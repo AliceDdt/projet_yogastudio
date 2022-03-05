@@ -1,0 +1,14 @@
+# See https://docs.rubocop.org/rubocop/configuration
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "db/**/*"
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'node_modules/**/*'
+Style/Documentation:
+  Enabled: false
