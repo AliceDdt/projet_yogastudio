@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+
+  constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
+    mount Avo::Engine, at: Avo.configuration.root_path
+  end
+  
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
 
