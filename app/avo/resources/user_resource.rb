@@ -10,6 +10,7 @@ class UserResource < Avo::BaseResource
   field :last_name, as: :text
   field :phone_number, as: :text
   field :email, as: :text
+  field :password, as: :text
 
   field :address, as: :has_one
   # add fields here
