@@ -6,5 +6,9 @@ class AddressResource < Avo::BaseResource
   # end
 
   field :id, as: :id
-  # add fields here
+  field :street, as: :text
+  field :completary, as: :text
+  field :city, as: :text
+  field :zip_code, as: :text
+
 end

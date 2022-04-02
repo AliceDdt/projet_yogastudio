@@ -6,11 +6,10 @@
 # Table name: yoga_sessions
 #
 #  id                  :bigint           not null, primary key
-#  date                :date             not null
+#  date                :datetime         not null
 #  number_booking      :integer          not null
 #  number_participants :integer          not null
 #  price               :float            not null
-#  time                :time             not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #  course_id           :bigint

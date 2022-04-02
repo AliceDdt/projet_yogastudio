@@ -6,5 +6,6 @@ class BookingResource < Avo::BaseResource
   # end
 
   field :id, as: :id
-  # add fields here
+  field :user, as: :belongs_to
+  field :yoga_session, as: :belongs_to
 end
