@@ -1,0 +1,24 @@
+fr:
+  admin:
+    addresses:
+        breadcrumbs:
+          index: Adresses
+        titles:
+          index: Adresses
+        table:
+          headers:
+            auth: ""
+    menu:
+      group:
+        addresses: Adresses
+    navigation:
+      items:
+        addresses: Adresses
+        bookings: Réservations
+        courses: Cours
+        users: Utilisateurs
+        yoga_sessions: Planning
+
+       
+    
+
