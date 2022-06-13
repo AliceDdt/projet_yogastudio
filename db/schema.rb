@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_05_152131) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_02_133033) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_05_152131) do
     t.string "complementary"
     t.string "zip_code"
     t.string "city"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "yoga_session_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+    t.index ["yoga_session_id"], name: "index_bookings_on_yoga_session_id"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "short_description", null: false
+    t.text "long_description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -37,4 +56,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_05_152131) do
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
 
+  create_table "yoga_sessions", force: :cascade do |t|
+    t.datetime "date", precision: nil, null: false
+    t.integer "number_participants", null: false
+    t.integer "number_booking", null: false
+    t.float "price", null: false
+    t.bigint "course_id"
+    t.bigint "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_yoga_sessions_on_course_id"
+    t.index ["teacher_id"], name: "index_yoga_sessions_on_teacher_id"
+  end
+
+  add_foreign_key "addresses", "users"
+  add_foreign_key "bookings", "users"
+  add_foreign_key "bookings", "yoga_sessions"
+  add_foreign_key "yoga_sessions", "courses"
+  add_foreign_key "yoga_sessions", "users", column: "teacher_id"
 end
