@@ -1,0 +1,29 @@
+              <section class="yogaclass">
+                <h2>Planning des cours</h2>
+                <p>Retrouvez ici tous les cours réservables! </p>                
+                <% %>
+                    <div class="yogaclass__card">
+                        <p></p>
+                        <p>par</p>
+                        <p></p>
+                        <p></p>
+                        <p></p>
+                            <%# <?php if(intval($item['Nb_seats']) > 0 ): ?> %>
+                                <p></p>
+                                <form class="form__resa" action="timetable/add" method="POST">
+                                    <button type="submit" class="btn btn__resa"
+                                            data-id=""
+                                            data-name=""
+                                            data-date =""
+                                            data-time= ""
+                                            data-price="">
+                                            Réserver
+                                    </button>
+                                    <input type="hidden" name="yogaclass_id" value="">
+                                </form>
+                            <%# <?php else: ?>
+                                <p>COMPLET</p>
+                            <?php endif; ?>                                          %>
+                    </div>
+                <%# <?php endforeach; ?> %>
+            </section>

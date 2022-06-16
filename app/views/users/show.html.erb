@@ -1,0 +1,46 @@
+            <section class="account">
+                <h2>Mon compte</h2>
+                <div class="account__card">
+                    <h3>Mes informations</h3>
+                    <div>
+                        <p><%= current_user.full_name %></p>
+                        <%# <p><?= $userInfos['Address1']; ?></p>
+                        <?php if(isset($userInfos['Address2'])): ?>
+                        <p><?= $userInfos['Address2']; ?></p>
+                        <?php endif; ?>
+                        <p><?= $userInfos['ZipCode']; ?></p>
+                        <p><?= $userInfos['City']; ?></p> %>
+                        <p><%= current_user.email %></p>
+                        <%= link_to 'Modifier', edit_user_path, class: 'btn' %>
+                    </div>
+                </div>
+                <div class="account__card">
+                    <%# <h3>Réservations</h3>
+                <?php if(!$userBooking): ?>
+                        <p>Vous n'avez fait aucune réservation!</p>
+                    <?php endif; ?>
+                <?php if($userBooking): ?>
+                        <table>
+                            <thead>
+                                <th>N°</th>
+                                <th>Cours</th>
+                                <th>Date</th>
+                                <th>Horaire</th>
+                                <th>Prix</th>
+                            </thead>
+                            <tbody>
+                            <?php foreach($bookingDetails as $item): ?>                    
+                                <tr>
+                                    <td><?= intval($item['Reservation_Id']); ?> </td>
+                                    <td><?= htmlspecialchars($item['Name']); ?></td>
+                                    <td><?= htmlspecialchars($item['Date']); ?></td>
+                                    <td><?= htmlspecialchars($item['Time']); ?></td>
+                                    <td><?= intval($item['Price']); ?> €</td>
+                                </tr>
+                            <?php endforeach; ?>
+                            <tbody>
+                        </table>                                  
+                    <p>Si vous souhaitez annuler une réservation, envoyez-nous un email à yogastudio@gmail.com</p>
+                    <?php endif ;?>            %>
+                </div>
+            </section>
