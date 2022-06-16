@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-
-  constraints Clearance::Constraints::SignedIn.new { |user| user.admin? } do
-    mount Avo::Engine, at: Avo.configuration.root_path
-  end
+  root "root#index"
   
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
@@ -18,8 +15,9 @@ Rails.application.routes.draw do
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :courses, only: [:index]
+  resources :teachers, only: [:index]
+  resources :yoga_sessions, only: [:index]
+
 end
