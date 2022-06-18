@@ -25,9 +25,11 @@ class User < ApplicationRecord
 
   include Clearance::User
 
-  has_one :address
+  has_one :address, dependent: :destroy
 
   validates :first_name, :last_name, :phone_number, presence: true
+
+  accepts_nested_attributes_for :address, update_only: true
 
   # TODO: delete once role gem is installed admin/user
   def admin?
@@ -37,6 +39,4 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
-  include Trestle::Auth::ModelMethods
-  include Trestle::Auth::ModelMethods::Rememberable
 end

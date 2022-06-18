@@ -7,41 +7,41 @@
     <%= form.label :email %>
     <%= form.text_field :email, type: 'email' %>
   </div>
-
   <div class="field">
     <%= form.label :password %>
     <%= form.password_field :password %>
   </div>
-
   <div class="field">
     <%= form.label :last_name %>
     <%= form.text_field :last_name %>
   </div>
-
   <div class="field">
     <%= form.label :first_name %>
     <%= form.text_field :first_name %>
   </div>
-
   <div class="field">
-    <%= form.label :street %>
-    <%= form.text_field :phone_number %>
-  </div>
- 
-  <div class="field">
-    <%= form.label :complementary %>
-    <%= form.text_field :phone_number %>
-  </div>
-  
-  <div class="field">
-    <%= form.label :zip_code %>
+    <%= form.label :phone_number %>
     <%= form.text_field :phone_number %>
   </div>
 
-  <div class="field">
-    <%= form.label :city %>
-    <%= form.text_field :phone_number %>
-  </div>
+  <%= form.fields_for :address, @user.address || @user.build_address do |ff| %>
+    <div class="field">
+      <%= ff.label :city %>
+      <%= ff.text_field :city %>
+    </div>
+      <div class="field">
+      <%= ff.label :zip_code %>
+      <%= ff.text_field :zip_code %>
+    </div>
+      <div class="field">
+      <%= ff.label :street %>
+      <%= ff.text_field :street %>
+    </div>
+      <div class="field">
+      <%= ff.label :complementary %>
+      <%= ff.text_field :complementary %>
+    </div>
+  <% end %>
 
    <%= form.submit class: 'btn' %>
 <% end %>
