@@ -21,13 +21,15 @@
 #  index_users_on_remember_token  (remember_token)
 #
 class User < ApplicationRecord
+  rolify strict: true
+
   include Clearance::User
 
   has_one :address
-  
+
   validates :first_name, :last_name, :phone_number, presence: true
 
-  # TODO: delete once role gem is installed admin/user 
+  # TODO: delete once role gem is installed admin/user
   def admin?
     true
   end
@@ -35,4 +37,6 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+  include Trestle::Auth::ModelMethods
+  include Trestle::Auth::ModelMethods::Rememberable
 end

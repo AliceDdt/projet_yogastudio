@@ -1,0 +1,44 @@
+fr:
+  flashes:
+    failure_after_create: Erreur d'email ou de mot de passe.
+    failure_after_update: Mot de passe doit être rempli.
+    failure_when_forbidden: Please double check the URL or try submitting
+      the form again.
+    failure_when_not_signed_in: Connectez-vous pour continuer.
+    failure_when_missing_email: Email doit être rempli.
+  helpers:
+    label:
+      password_reset:
+        password: Nouveau mot de passe
+      session:
+        password: Mot de passe
+      user:
+        last_name: Nom
+        first_name: Prénom
+        phone_number: Numéro de téléphone
+        password: Mot de passe
+    submit:
+      password:
+        submit: Réinitialiser
+      password_reset:
+        submit: Enregistrer
+      session:
+        submit: Connexion
+      user:
+        create: Inscription
+  layouts:
+    application:
+      sign_in: Connexion
+      sign_out: Déconnexion
+  sessions:
+    form:
+      forgot_password: Mot de passe oublié ?
+      sign_up: Inscription
+    new:
+      title: Connexion
+  users:
+    new:
+      sign_in: Connexion
+      title: Inscription
+    edit:
+      title: Modifier

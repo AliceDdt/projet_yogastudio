@@ -1,24 +1,19 @@
-Trestle.resource(:users) do
-  remove_action :new, :edit, :update
-
+Trestle.resource(:teachers, model: User) do
   menu do
-    item :users, icon: 'fa fa-star'
+    item :teachers, icon: 'fa fa-star'
   end
 
   # Customize the table columns shown on the index view.
-  table do
-    column :id
-    column :email
-    column :first_name
-    column :last_name
-    column :email
-    column :created_at, sort: { default: true, default_order: :desc }
-    column :updated_at
-  end
+  #
+  # table do
+  #   column :name
+  #   column :created_at, align: :center
+  #   actions
+  # end
 
   # Customize the form fields shown on the new/edit views.
   #
-  # form do |user|
+  # form do |teacher|
   #   text_field :name
   #
   #   row do
@@ -35,6 +30,6 @@ Trestle.resource(:users) do
   #   http://guides.rubyonrails.org/action_controller_overview.html#strong-parameters
   #
   # params do |params|
-  #   params.require(:user).permit(:name, ...)
+  #   params.require(:teacher).permit(:name, ...)
   # end
 end
