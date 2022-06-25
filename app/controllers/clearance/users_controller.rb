@@ -17,7 +17,6 @@ module Clearance
 
     def create
       @user = Clearance.configuration.user_model.new(permitted_params)
-      @user.add_role :user
 
       if @user.save
         sign_in @user

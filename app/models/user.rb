@@ -21,8 +21,6 @@
 #  index_users_on_remember_token  (remember_token)
 #
 class User < ApplicationRecord
-  rolify strict: true
-
   include Clearance::User
 
   has_one :address, dependent: :destroy
