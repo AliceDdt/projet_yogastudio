@@ -5,9 +5,12 @@ class CreateAddress < ActiveRecord::Migration[7.0]
       t.string :complementary
       t.string :zip_code
       t.string :city
-      t.belongs_to :user, foreign_key: true
+      t.string :addressable_type
+      t.bigint :addressable_id
 
       t.timestamps
     end
+
+    add_index :addresses, [:addressable_type, :addressable_id]
   end
 end

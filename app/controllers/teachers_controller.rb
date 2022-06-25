@@ -2,6 +2,6 @@
 
 class TeachersController < ApplicationController
   def index
-    @teachers = User.all
+    @teachers = Teacher.all
   end
 end

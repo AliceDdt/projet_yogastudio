@@ -1,14 +1,16 @@
-            <section>
-                <h2>L'équipe du Yoga Studio</h2>
-                <% @teachers.each do |teacher| %>
-                <article class="team__element team--description">
-                    <div class="team__picture">
-                        <div>
-                            <img src="" alt="">
-                        </div>
-                    </div>
-                    <div>
-                        <h3><%= teacher.full_name %></h3>
-                </article>
-								<% end %>
-            </section>
+<section>
+	<h2>L'équipe du Yoga Studio</h2>
+		<% @teachers.each do |teacher| %>
+		<article class="team__element team--description">
+			<div class="team__picture">
+				<div>
+				<% if teacher.picture.url %>
+					<img src="<%= rails_blob_path(teacher.picture, disposition: "attachment", expires_in: 60.seconds) %>" alt="">
+				<% end %>
+				</div>
+				</div>
+				<div>
+						<h3><%= teacher.full_name %></h3>
+		</article>
+<% end %>
+</section>

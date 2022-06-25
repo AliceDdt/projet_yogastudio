@@ -1,26 +1,36 @@
-Trestle.resource(:teachers, model: User) do
+Trestle.resource(:teachers) do
   menu do
     item :teachers, icon: 'fa fa-star'
   end
 
   # Customize the table columns shown on the index view.
-  #
-  # table do
-  #   column :name
-  #   column :created_at, align: :center
-  #   actions
-  # end
+  table do
+    column :first_name
+    column :last_name
+    column :created_at, align: :center
+    #   actions
+  end
 
   # Customize the form fields shown on the new/edit views.
-  #
-  # form do |teacher|
-  #   text_field :name
-  #
-  #   row do
-  #     col { datetime_field :updated_at }
-  #     col { datetime_field :created_at }
-  #   end
-  # end
+  form do |teacher|
+    text_field :last_name
+    text_field :first_name
+    fields_for :address, teacher.address || teacher.build_address do
+      text_field :street
+      text_field :complementary
+      text_field :zip_code
+      text_field :city
+    end
+    phone_field :phone_number
+    email_field :email
+    file_field :picture
+    text_area :bio
+    #
+    #   row do
+    #     col { datetime_field :updated_at }
+    #     col { datetime_field :created_at }
+    #   end
+  end
 
   # By default, all parameters passed to the update and create actions will be
   # permitted. If you do not have full trust in your users, you should explicitly
