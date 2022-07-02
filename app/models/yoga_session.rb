@@ -29,9 +29,48 @@ class YogaSession < ApplicationRecord
   belongs_to :course
   belongs_to :teacher
 
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
+
+  validate :start_end_on_same_day,
+           :start_is_before_end_date,
+           :start_in_future,
+           :in_between_opening_hours,
+           :teacher_availability
 
   def remaining_seats
     number_participants - number_booking
+  end
+
+  def start_end_on_same_day
+    return if start_date == end_date
+
+    errors.add(:start_date, 'must be the same as end date')
+  end
+
+  def start_is_before_end_date
+    return if start_date < end_date
+
+    errors.add(:start_date, 'must be before end date')
+  end
+
+  def start_in_future
+    return if start_date > Time.zone.now
+
+    errors.add(:start_date, 'must be in the future')
+  end
+
+  def in_between_opening_hours
+    valid = [start_date, end_date].all? do |d|
+      d.between?(d.change(hour: 7), d.change(hour: 23))
+    end
+    return if valid
+
+    errors.add(:start_date, 'must be in between opening hours')
+  end
+
+  def teacher_availability
+    return if teacher.available_between?(start_date, end_date)
+
+    errors.add(:teacher, 'is not available')
   end
 end
