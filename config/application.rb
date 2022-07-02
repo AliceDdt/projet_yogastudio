@@ -13,6 +13,20 @@ module Projet
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+
+    config.eager_load_paths << Rails.root.join('lib')
+    config.autoload_paths += Dir[Rails.root.join('lib').to_s,
+                                 Rails.root.join(
+                                   'app', 'models', 'concerns'
+                                 ).to_s]
+
+    config.i18n.available_locales = %w[en fr]
+    config.i18n.default_locale = :fr
+    config.i18n.fallbacks = %i[en fr]
+    #TO DO : modify env variable
+    Rails.application.routes.default_url_options[:host] = ENV['BASE_URL']
+    config.time_zone = 'Paris'
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

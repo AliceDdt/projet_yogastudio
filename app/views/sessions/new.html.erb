@@ -1,10 +1,12 @@
-<div id="clearance" class="sign-in">
-  <h2><%= t(".title") %></h2>
- 
- <% flash.each do |key, value| %>
-    <div><%= value %></div>
-  <% end %>
+<section>
+  <div id="clearance">
+    <h2><%= t(".title") %></h2>
+  
+    <% flash.each do |key, value| %>
+      <div><%= value %></div>
+    <% end %>
 
-  <%= render partial: '/sessions/form' %>
+    <%= render partial: '/sessions/form' %>
 
-</div>
+  </div>
+</section>

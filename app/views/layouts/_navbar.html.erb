@@ -1,0 +1,36 @@
+<nav class="navbar">
+	<ul>
+		<li><%= link_to 'A propos', root_path %></li>
+		<li><%= link_to 'Cours', courses_path %></li>
+		<li><%= link_to 'Enseignants', teachers_path %></li>
+		<li><%= link_to 'Planning', yoga_sessions_path %></li>
+		<% if signed_in? %>
+			<li class="laptop icon">
+			<%= link_to user_path(current_user) do %>
+				<i class="fas fa-child"></i>
+			<% end%>
+			</li>
+			<li class="laptop icon">
+				<%= button_to sign_out_path, class: "laptop icon", method: :delete do %>
+					<i class="far fa-times-circle"></i>
+				<% end %>
+			</li>
+		<% else %>
+ 			<li class="laptop icon">
+				<%= link_to sign_in_path do %>
+					<i class="fas fa-user"></i>
+				<% end %>
+			</li>
+			 <%# <?php if(isAdmin()): ?>
+         <li class="laptop"><a href="admin">Admin</a></li>
+       <?php endif; ?> %>
+		<% end %>
+			<li><%= link_to 'mon compte', sign_in_path %></li>
+<%# 	<% if signed_in? %>
+		<li><%= link_to 'deconnexion', sign_out_path %></li>
+		<%# <?php if(isAdmin()): ?> %>
+		<%# <li><a href="admin">admin</a></li> %>
+					<%# <?php endif; ?> %>
+			<%# <?php endif; ?> %>
+	</ul>
+</nav>
