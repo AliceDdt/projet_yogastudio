@@ -23,7 +23,7 @@
 class User < ApplicationRecord
   include Clearance::User
 
-  has_one :address, dependent: :destroy
+  has_one :address, as: :addressable, dependent: :destroy
 
   validates :first_name, :last_name, :phone_number, presence: true
 
