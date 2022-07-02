@@ -4,13 +4,9 @@
                     <h3>Mes informations</h3>
                     <div>
                         <p><%= current_user.full_name %></p>
-                        <%# <p><?= $userInfos['Address1']; ?></p>
-                        <?php if(isset($userInfos['Address2'])): ?>
-                        <p><?= $userInfos['Address2']; ?></p>
-                        <?php endif; ?>
-                        <p><?= $userInfos['ZipCode']; ?></p>
-                        <p><?= $userInfos['City']; ?></p> %>
                         <p><%= current_user.email %></p>
+                        <p><%= current_user.address.street %></p>
+                        <p><%= current_user.address.zip_code + ' ' + current_user.address.city %></p>
                         <%= link_to 'Modifier', edit_user_path, class: 'btn' %>
                     </div>
                 </div>

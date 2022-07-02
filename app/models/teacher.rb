@@ -23,4 +23,8 @@ class Teacher < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def available_between?(start_date, end_date)
+    yoga_sessions.where('(start_date, end_date) OVERLAPS (?, ?)', start_date, end_date).empty?
+  end
 end
