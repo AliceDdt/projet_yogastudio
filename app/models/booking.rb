@@ -20,5 +20,9 @@
 #
 class Booking < ApplicationRecord
   belongs_to :user
-  belongs_to :yoga_session
+  belongs_to :yoga_session, counter_cache: :number_booking
+
+  after_create do
+    YogaSession.reset_counters(yoga_session.id, :bookings)
+  end
 end

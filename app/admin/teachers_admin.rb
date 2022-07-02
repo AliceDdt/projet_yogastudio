@@ -15,21 +15,18 @@ Trestle.resource(:teachers) do
   form do |teacher|
     text_field :last_name
     text_field :first_name
+
     fields_for :address, teacher.address || teacher.build_address do
       text_field :street
       text_field :complementary
       text_field :zip_code
       text_field :city
     end
+
     phone_field :phone_number
     email_field :email
     file_field :picture
     text_area :bio
-    #
-    #   row do
-    #     col { datetime_field :updated_at }
-    #     col { datetime_field :created_at }
-    #   end
   end
 
   # By default, all parameters passed to the update and create actions will be

@@ -985,6 +985,11 @@ input:focus {
         margin: 10rem auto;
     }
 
+    .form__resa {
+        width: 100%;
+        margin: 1rem auto;
+    }
+
     legend {
         font-size: var(--size-title-2);
     }
