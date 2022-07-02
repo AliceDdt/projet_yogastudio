@@ -2,22 +2,19 @@
 #
 # Table name: addresses
 #
-#  id            :bigint           not null, primary key
-#  city          :string
-#  complementary :string
-#  street        :string
-#  zip_code      :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  user_id       :bigint
+#  id               :bigint           not null, primary key
+#  addressable_type :string
+#  city             :string
+#  complementary    :string
+#  street           :string
+#  zip_code         :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  addressable_id   :bigint
 #
 # Indexes
 #
-#  index_addresses_on_user_id  (user_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (user_id => users.id)
+#  index_addresses_on_addressable_type_and_addressable_id  (addressable_type,addressable_id)
 #
 class Address < ApplicationRecord
   belongs_to :addressable, polymorphic: true

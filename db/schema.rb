@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_18_204428) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_25_133229) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -107,14 +107,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_204428) do
   end
 
   create_table "yoga_sessions", force: :cascade do |t|
-    t.datetime "date", precision: nil, null: false
     t.integer "number_participants", null: false
-    t.integer "number_booking", null: false
+    t.integer "number_booking", default: 0, null: false
     t.float "price", null: false
     t.bigint "course_id"
     t.bigint "teacher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "start_date", null: false
+    t.datetime "end_date", null: false
     t.index ["course_id"], name: "index_yoga_sessions_on_course_id"
     t.index ["teacher_id"], name: "index_yoga_sessions_on_teacher_id"
   end
@@ -124,5 +125,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_204428) do
   add_foreign_key "bookings", "users"
   add_foreign_key "bookings", "yoga_sessions"
   add_foreign_key "yoga_sessions", "courses"
-  add_foreign_key "yoga_sessions", "users", column: "teacher_id"
+  add_foreign_key "yoga_sessions", "teachers"
 end
