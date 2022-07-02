@@ -20,6 +20,8 @@ class Teacher < ApplicationRecord
 
   accepts_nested_attributes_for :address, update_only: true
 
+  has_many :yoga_sessions, dependent: :destroy
+
   def full_name
     "#{first_name} #{last_name}"
   end
