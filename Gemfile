@@ -5,8 +5,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.5'
 
+gem 'aws-sdk-s3', require: false
 gem 'bootsnap', require: false
 gem 'clearance'
+gem 'enumerize', '~> 2.3', '>= 2.3.1'
+gem 'image_processing', '>= 1.2'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'pg'
@@ -19,6 +22,7 @@ gem 'sprockets-rails'
 gem 'sqlite3', '~> 1.4'
 gem 'stimulus-rails'
 gem 'trestle'
+gem 'trestle-auth'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 

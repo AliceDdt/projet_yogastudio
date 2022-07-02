@@ -23,11 +23,13 @@
 class User < ApplicationRecord
   include Clearance::User
 
-  has_one :address
-  
+  has_one :address, dependent: :destroy
+
   validates :first_name, :last_name, :phone_number, presence: true
 
-  # TODO: delete once role gem is installed admin/user 
+  accepts_nested_attributes_for :address, update_only: true
+
+  # TODO: delete once role gem is installed admin/user
   def admin?
     true
   end

@@ -20,5 +20,5 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Address < ApplicationRecord
-  belongs_to :user
+  belongs_to :addressable, polymorphic: true
 end
