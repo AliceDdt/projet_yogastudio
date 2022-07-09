@@ -510,7 +510,7 @@ article.team__element div {
 .yogaclass__card {
     width: 70%;
     box-shadow: var(--shadow-card);
-    background: var(--backcolor-card)
+    background: var(--backcolor-card);
 }
 
 .main .yogaclass__card>p {

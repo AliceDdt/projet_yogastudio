@@ -24,6 +24,7 @@ module Projet
     config.i18n.default_locale = :fr
     config.i18n.fallbacks = %i[en fr]
     #TO DO : modify env variable
+
     Rails.application.routes.default_url_options[:host] = ENV['BASE_URL']
     config.time_zone = 'Paris'
 

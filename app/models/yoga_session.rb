@@ -34,8 +34,9 @@ class YogaSession < ApplicationRecord
   validate :start_end_on_same_day,
            :start_is_before_end_date,
            :start_in_future,
-           :in_between_opening_hours,
-           :teacher_availability
+           :in_between_opening_hours
+
+  broadcasts_to ->(_yoga_session) { %w[room yoga_sessions] }, inserts_by: :prepend
 
   def remaining_seats
     number_participants - number_booking
@@ -68,9 +69,9 @@ class YogaSession < ApplicationRecord
     errors.add(:start_date, 'must be in between opening hours')
   end
 
-  def teacher_availability
-    return if teacher.available_between?(start_date, end_date)
+  # def teacher_availability
+  #   return if teacher.available_between?(start_date, end_date)
 
-    errors.add(:teacher, 'is not available')
-  end
+  #   errors.add(:teacher, 'is not available')
+  # end
 end

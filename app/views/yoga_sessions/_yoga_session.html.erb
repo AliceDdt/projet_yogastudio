@@ -1,0 +1,11 @@
+<%= turbo_frame_tag yoga_session, class: 'yogaclass__card' do %>
+  <p><%= yoga_session.course.name %></p>
+  <p>par <%= yoga_session.teacher.first_name %></p>
+  <p><%= "le " + yoga_session.start_date.strftime("%d/%m/%Y") %></p>
+  <p><%= "de #{yoga_session.start_date.strftime("%H:%M")} à #{yoga_session.end_date.strftime("%H:%M")}" %></p>
+  <p><%= ActiveSupport::NumberHelper.number_to_currency(yoga_session.price, precision: 0) %></p>
+  <p><%= "#{pluralize(yoga_session.remaining_seats, 'place')} #{'restante'.pluralize(yoga_session.remaining_seats)}" %> </p>
+  <%= form_with model: Booking.new, class: "form__resa", url: "/yoga_sessions/#{yoga_session.id}/book", method: :post do |form| %>
+    <%= form.submit "Réserver", class: "btn btn__resa", disabled: false %>
+  <% end %>
+<% end %>

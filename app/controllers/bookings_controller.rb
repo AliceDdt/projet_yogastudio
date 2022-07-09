@@ -5,9 +5,13 @@ class BookingsController < ApplicationController
     @booking = Booking.new(create_params.merge(user: current_user))
 
     if @booking.save
-      redirect_to yoga_sessions_path, notice: 'Booking was successfully created.'
+      respond_to do |format|
+        format.html { redirect_to yoga_sessions_path, notice: 'Booking was successfully created.' }
+        format.turbo_stream
+      end
+      # redirect_to yoga_sessions_path, notice: 'Booking was successfully created.'
     else
-      redirect_to yoga_sessions_path, status: :unprocessable_entity, notice: 'toto'
+      redirect_to yoga_sessions_path, notice: 'toto'
     end
   end
 

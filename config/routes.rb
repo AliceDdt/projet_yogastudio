@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   resources :courses, only: [:index]
   resources :teachers, only: [:index]
-  resources :yoga_sessions, only: [:index]
+  resources :yoga_sessions, only: [:index] do
+    post :book
+  end
   resources :bookings, only: [:create]
 end
