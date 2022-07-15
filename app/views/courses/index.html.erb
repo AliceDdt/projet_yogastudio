@@ -1,14 +1,14 @@
-            <section class="courses__details">
-                <h2>Les cours</h2>
-                <% @courses.each do |course| %>
-                <article>
-                    <h3><%= course.name %></h3>
-                    <p><%= course.long_description %></p>
-                </article>
-                <% end %>
-                <div>
-                    <h2>Envie de découvrir ?</h2> 
-                    <p>Alors réservez-vite votre cours </p>
-                    <%= link_to 'Ici', yoga_sessions_path, class: "btn" %>
-                </div>
-            </section>
+<section class="courses__details">
+  <h2>Les cours</h2>
+  <% @courses.each do |course| %>
+    <article>
+      <h3><%= course.name %></h3>
+      <p><%= course.long_description %></p>
+    </article>
+  <% end %>
+  <div>
+    <h2>Envie de découvrir ?</h2>
+    <p>Alors réservez-vite votre cours </p>
+    <%= link_to 'Ici', yoga_sessions_path, class: "btn" %>
+  </div>
+</section>
