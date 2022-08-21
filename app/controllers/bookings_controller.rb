@@ -7,7 +7,7 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to yoga_sessions_path, notice: 'Booking was successfully created.'
     else
-      redirect_to yoga_sessions_path, status: :unprocessable_entity
+      redirect_to yoga_sessions_path, status: :unprocessable_entity, notice: 'toto'
     end
   end
 
