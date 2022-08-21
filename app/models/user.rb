@@ -24,15 +24,17 @@
 class User < ApplicationRecord
   include Clearance::User
 
-  has_one :address, as: :addressable, dependent: :destroy
-
   validates :first_name, :last_name, :phone_number, presence: true
+  
+  has_one :address, as: :addressable, dependent: :destroy
 
   accepts_nested_attributes_for :address, update_only: true
   
   after_create do
     create_stripe_customer(email)
   end
+
+  has_many :bookings, dependent: :destroy
 
   # TODO: delete once role gem is installed admin/user
   def admin?

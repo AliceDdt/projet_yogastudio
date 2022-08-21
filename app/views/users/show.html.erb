@@ -1,42 +1,43 @@
-            <section class="account">
-                <h2>Mon compte</h2>
-                <div class="account__card">
-                    <h3>Mes informations</h3>
-                    <div>
-                        <p><%= current_user.full_name %></p>
-                        <p><%= current_user.email %></p>
-                        <p><%= current_user.address.street %></p>
-                        <p><%= current_user.address.zip_code + ' ' + current_user.address.city %></p>
-                        <%= link_to 'Modifier', edit_user_path, class: 'btn' %>
-                    </div>
-                </div>
-                <div class="account__card">
-                    <%# <h3>Réservations</h3>
-                <?php if(!$userBooking): ?>
-                        <p>Vous n'avez fait aucune réservation!</p>
-                    <?php endif; ?>
-                <?php if($userBooking): ?>
-                        <table>
-                            <thead>
-                                <th>N°</th>
-                                <th>Cours</th>
-                                <th>Date</th>
-                                <th>Horaire</th>
-                                <th>Prix</th>
-                            </thead>
-                            <tbody>
-                            <?php foreach($bookingDetails as $item): ?>                    
-                                <tr>
-                                    <td><?= intval($item['Reservation_Id']); ?> </td>
-                                    <td><?= htmlspecialchars($item['Name']); ?></td>
-                                    <td><?= htmlspecialchars($item['Date']); ?></td>
-                                    <td><?= htmlspecialchars($item['Time']); ?></td>
-                                    <td><?= intval($item['Price']); ?> €</td>
-                                </tr>
-                            <?php endforeach; ?>
-                            <tbody>
-                        </table>                                  
-                    <p>Si vous souhaitez annuler une réservation, envoyez-nous un email à yogastudio@gmail.com</p>
-                    <?php endif ;?>            %>
-                </div>
-            </section>
+<section class="account">
+	<h2>Mon compte</h2>
+	<div class="account__card">
+		<h3>Mes informations</h3>
+		<div>
+			<p><%= current_user.full_name %></p>
+			<p><%= current_user.email %></p>
+			<p><%= current_user.address.street %></p>
+			<p><%= current_user.address.zip_code + ' ' + current_user.address.city %></p>
+			<%= link_to 'Modifier', edit_user_path, class: 'btn' %>
+		</div>
+	</div>
+	<div class="account__card">
+		<h3>Réservations</h3>
+		<% if current_user.bookings.any? %>
+		<table>
+			<thead>
+				<tr>
+					<th>N°</th>
+					<th>Cours</th>
+					<th>Date</th>
+					<th>Horaire</th>
+					<th>Prix</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% current_user.bookings.each do |b| %>                    
+				<tr>
+						<td><%= b.id %> </td>
+						<td><%= b.yoga_session.course.name %></td>
+						<td><%= b.yoga_session.start_date.strftime("%d/%m/%Y") %></td>
+						<td><%= b.yoga_session.start_date.strftime("%H:%M") %></td>
+						<td><%= ActiveSupport::NumberHelper.number_to_currency(b.yoga_session.price, precision: 0) %></td>
+				</tr>
+			<% end %>
+			<tbody>
+		</table>                                  
+	<p>Si vous souhaitez annuler une réservation, envoyez-nous un email à yogastudio@gmail.com</p>
+	<% else %>
+		<p>Vous n'avez fait aucune réservation!</p>
+	<% end %>
+	</div>
+</section>
