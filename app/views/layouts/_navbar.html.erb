@@ -25,12 +25,14 @@
          <li class="laptop"><a href="admin">Admin</a></li>
        <?php endif; ?> %>
 		<% end %>
+		<% if signed_in? %>
+			<li><%= link_to 'mon compte', user_path(current_user) %></li>
+			<li> <%= button_to 'deconnexion', sign_out_path, method: :delete %></li>
+		<% else %>
 			<li><%= link_to 'mon compte', sign_in_path %></li>
-<%# 	<% if signed_in? %>
-		<li><%= link_to 'deconnexion', sign_out_path %></li>
+		<% end %>
 		<%# <?php if(isAdmin()): ?> %>
 		<%# <li><a href="admin">admin</a></li> %>
 					<%# <?php endif; ?> %>
-			<%# <?php endif; ?> %>
 	</ul>
 </nav>
