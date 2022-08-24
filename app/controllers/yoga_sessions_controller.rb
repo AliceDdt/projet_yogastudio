@@ -31,9 +31,14 @@ class YogaSessionsController < ApplicationController
   end
 
   def add_to_cart #TO DO rajouter message d'erreur
+    @yoga_session = YogaSession.find(params[:id])
     id = params[:id].to_i
     session[:cart] << id unless session[:cart].include?(id)
-    redirect_to yoga_sessions_path
+
+    respond_to do |format|
+      format.html { redirect_to yoga_sessions_path, notice: "Quote was successfully created." }
+      format.turbo_stream { turbo_stream.replace(dom_id(@yoga_session)) }
+    end
   end
 
   def remove_from_cart #TO DO rajouter msg d'info
