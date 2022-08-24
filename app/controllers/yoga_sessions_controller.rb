@@ -12,7 +12,8 @@ class YogaSessionsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to yoga_sessions_path, notice: "Quote was successfully created." }
-      format.turbo_stream { turbo_stream.replace(dom_id(@yoga_session)) }
+      # format.turbo_stream { turbo_stream.replace(dom_id(@yoga_session)) }
+      format.turbo_stream { flash.now[:notice] = 'Quote was successfully created.' }
     end
   end
 

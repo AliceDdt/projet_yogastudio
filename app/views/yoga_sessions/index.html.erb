@@ -1,14 +1,7 @@
-<section class="yogaclass">
+<section>
   <h2>Planning des cours</h2>
   <p>Retrouvez ici tous les cours réservables! </p>
-
-
-  <%= turbo_frame_tag YogaSession.new %>
-
-
-
-
-  <%= turbo_frame_tag "yoga_sessions", style: 'display: flex;width: 100%' do %>
+  <%= turbo_frame_tag "yoga_sessions", class: 'yogaclass' do %>
     <%= render @yoga_sessions %>
   <% end %>
 </section>
