@@ -495,10 +495,6 @@ article.team__element div {
 }
 
 /********** timetable page /account page /cart page***********/
-.yogaclass p {
-	text-align: center;
-}
-
 .yogaclass__card,
 .account__card,
 .cart__booking {
@@ -510,7 +506,8 @@ article.team__element div {
 .yogaclass__card {
 	width: 70%;
 	box-shadow: var(--shadow-card);
-	background: var(--backcolor-card)
+	background: var(--backcolor-card);
+	text-align: center;
 }
 
 .main .yogaclass__card>p {
@@ -693,7 +690,7 @@ article.team__element div {
 		flex-wrap: wrap;
 		justify-content: space-around;
 		align-items: center;
-		width: 80%;
+		width: 100%;
 		margin: 4rem auto;
 	}
 
@@ -707,6 +704,7 @@ article.team__element div {
 		width: 45%;
 		margin: 4rem 1rem;
 	}
+
 
 	/********* account page ***********/
 	.account__card th:last-of-type,
