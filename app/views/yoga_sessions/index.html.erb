@@ -1,9 +1,14 @@
 <section class="yogaclass">
   <h2>Planning des cours</h2>
   <p>Retrouvez ici tous les cours réservables! </p>
-  <% @yoga_sessions.each do |ys| %>
-    <%= turbo_frame_tag ys, class: 'yogaclass__card' do %>
-      <%= render partial: "yoga_sessions/session_card", locals: { ys: ys } %>
-    <% end %>
+
+
+  <%= turbo_frame_tag YogaSession.new %>
+
+
+
+
+  <%= turbo_frame_tag "yoga_sessions", style: 'display: flex;width: 100%' do %>
+    <%= render @yoga_sessions %>
   <% end %>
 </section>

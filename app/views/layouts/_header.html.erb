@@ -8,6 +8,6 @@
   <%= render 'layouts/navbar' %>
   <%= link_to cart_index_path, class:"icon icon--cart", id: 'cart' do %>
     <i class="fas fa-shopping-cart"></i>
-    <span id="cart-total" class="icon--total">0</span>
+    <span id="cart-total" class="icon--total"><%= session[:cart].count %></span>
   <% end %>
 </header>

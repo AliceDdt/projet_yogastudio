@@ -1,0 +1,8 @@
+<%= turbo_stream.prepend "yoga_sessions" do %>
+  <%= render @yoga_session %>
+<% end %>
+
+
+<%= turbo_stream.replace @yoga_session %>
+
+<%= turbo_stream.prepend "flash", partial: "layouts/flash" %>

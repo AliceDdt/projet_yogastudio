@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :courses, only: [:index]
   resources :teachers, only: [:index]
   resources :yoga_sessions, only: [:index] do
-    post 'add_to_cart', on: :member, action: 'add_to_cart'
+    post 'add_to_cart', on: :member, action: 'add_to_cart', defaults: { format: :turbo_stream }
     delete 'remove_from_cart', on: :member, action: 'remove_from_cart'
   end
 
