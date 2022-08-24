@@ -694,10 +694,8 @@ article.team__element div {
 		margin: 4rem auto;
 	}
 
-	.yogaclass>h2,
-	.yogaclass>p {
+	.yogaclass>h2 {
 		width: 100%;
-		text-align: center;
 	}
 
 	.yogaclass__card {
