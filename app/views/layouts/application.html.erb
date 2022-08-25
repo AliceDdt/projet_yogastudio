@@ -8,14 +8,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nothing+You+Could+Do&display=swap" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= stylesheet_link_tag "application",  media: "all" , "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
-<%= stylesheet_link_tag "application",  media: "all" , "data-turbo-track": "reload" %>
-<%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-<%= javascript_include_tag "main", "data-turbo-track": "reload", type: :module %>
   </head>
   <body>
       <div class="container">
