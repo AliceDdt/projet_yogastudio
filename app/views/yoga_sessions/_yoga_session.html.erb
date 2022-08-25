@@ -1,5 +1,3 @@
-<%= turbo_stream_from yoga_session %>
-
 <%= turbo_frame_tag yoga_session, class: 'yogaclass__card' do %>
   <p><%= yoga_session.course.name %></p>
   <p>par <%= yoga_session.teacher.first_name %></p>
@@ -8,7 +6,9 @@
   <p><%= ActiveSupport::NumberHelper.number_to_currency(yoga_session.price, precision: 0) %></p>
   <p><%= "#{pluralize(yoga_session.remaining_seats, 'place')} #{'restante'.pluralize(yoga_session.remaining_seats)}" %> </p>
 
-
-  <%= button_to "Réserver", add_to_cart_yoga_session_path(yoga_session), method: :post, data: { turbo_frame: yoga_session }, form_class: "form__resa", class: 'btn btn-resa' %>
-
+  <%= button_to "Réserver", add_to_cart_yoga_session_path(yoga_session), 
+      method: :post, 
+      data: { turbo_frame: yoga_session },
+      form_class: "form__resa", 
+      class: 'btn btn-resa' %>
 <% end %>
