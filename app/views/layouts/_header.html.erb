@@ -1,13 +1,13 @@
 <header class="header">
-	<h1 class="header__title"><%= link_to 'Yoga Studio', root_path %></h1>
-	<div class="navbar__btn">
-			<div class="btn__bar"></div>
-			<div class="btn__bar"></div>
-			<div class="btn__bar"></div>
-	</div>
-	<%= render 'layouts/navbar' %>
-	<a href="cart" id="cart" class="icon icon--cart">
-		<i class="fas fa-shopping-cart"></i>
-		<span id="cart-total" class="icon--total">0</span>
-	</a>     
+  <h1 class="header__title"><%= link_to 'Yoga Studio', root_path %></h1>
+  <div class="navbar__btn">
+    <div class="btn__bar"></div>
+    <div class="btn__bar"></div>
+    <div class="btn__bar"></div>
+  </div>
+  <%= render 'layouts/navbar' %>
+  <%= link_to cart_index_path, class:"icon icon--cart", id: 'cart' do %>
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cart-total" class="icon--total">0</span>
+  <% end %>
 </header>

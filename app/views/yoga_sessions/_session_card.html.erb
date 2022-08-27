@@ -4,7 +4,4 @@
 <p><%= "de #{ys.start_date.strftime("%H:%M")} à #{ys.end_date.strftime("%H:%M")}" %></p>
 <p><%= ActiveSupport::NumberHelper.number_to_currency(ys.price, precision: 0) %></p>
 <p><%= "#{pluralize(ys.remaining_seats, 'place')} #{'restante'.pluralize(ys.remaining_seats)}" %> </p>
-<%= form_with model: Booking.new, class: "form__resa", url: "/bookings", method: :post do |form| %>
-  <%= form.hidden_field :yoga_session_id, value: ys.id %>
-  <%= form.submit "Réserver", class: "btn btn__resa", disabled: current_user.nil? %>
-<% end %>
+<%= button_to "Réserver", add_to_cart_yoga_session_path(ys), method: :post, class: 'btn btn--resa' %>
