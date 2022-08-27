@@ -17,6 +17,7 @@ fr:
         first_name: Prénom
         phone_number: Numéro de téléphone
         password: Mot de passe
+        password_confirmation: Confirmer mot de passe
     submit:
       password:
         submit: Réinitialiser

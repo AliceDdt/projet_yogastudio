@@ -1,8 +1,13 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'formvalidator', type: :module %>
+<% end %>
+
+
 <% flash.each do |key, value| %>
     <div><%= value %></div>
 <% end %>
 
-<%= form_with model: @user do |form| %>
+<%= form_with model: @user, id: 'form' do |form| %>
   <div class="field">
     <%= form.label :email %>
     <%= form.text_field :email, type: 'email' %>
@@ -10,6 +15,10 @@
   <div class="field">
     <%= form.label :password %>
     <%= form.password_field :password %>
+  </div>
+  <div class="field">
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %>
   </div>
   <div class="field">
     <%= form.label :last_name %>
@@ -26,24 +35,25 @@
 
   <%= form.fields_for :address, @user.address || @user.build_address do |ff| %>
     <div class="field">
-      <%= ff.label :city %>
-      <%= ff.text_field :city %>
-    </div>
-      <div class="field">
-      <%= ff.label :zip_code %>
-      <%= ff.text_field :zip_code %>
-    </div>
-      <div class="field">
       <%= ff.label :street %>
       <%= ff.text_field :street %>
     </div>
-      <div class="field">
+    <div class="field">
       <%= ff.label :complementary %>
       <%= ff.text_field :complementary %>
+    </div>
+    <div class="field">
+      <%= ff.label :zip_code %>
+      <%= ff.text_field :zip_code %>
+    </div>
+    <div class="field">
+      <%= ff.label :city %>
+      <%= ff.text_field :city %>
     </div>
   <% end %>
 
    <%= form.submit class: 'btn' %>
 <% end %>
+
 
 
