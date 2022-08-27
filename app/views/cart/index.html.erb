@@ -1,0 +1,24 @@
+<section class="cart" >
+  <h2>Mon espace réservation</h2>
+  <% if !@cart %>
+    <div id="cart-display">
+    </div>
+    <div id="booking-form" class="hidden" >
+    <% else %>
+      <% @cart.each do |ys| %>
+        <ul>
+          <li><%= ys.course.name %></li>
+          <li><%= "le " + ys.start_date.strftime("%d/%m/%Y") %></li>
+          <li><%= "de #{ys.start_date.strftime("%H:%M")} à #{ys.end_date.strftime("%H:%M")}" %></li>
+          <li><%= ActiveSupport::NumberHelper.number_to_currency(ys.price, precision: 0) %></li>
+          <li><%= button_to 'Effacer', remove_from_cart_yoga_session_path(ys), method: :delete %></li>
+        </ul>
+      <% end%>
+    <% end %>
+    <%= button_to 'Valider', checkout_create_path, class: 'btn', data: { turbo: false } %>
+    <%# <form method="POST" action="cart/validate">
+      <input type="hidden" id="bookingCartJson" name="cart" />
+      <button type="submit" class="btn">Valider</button>
+    </form> %>
+  </div>
+</section>

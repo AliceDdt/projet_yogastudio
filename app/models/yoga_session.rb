@@ -73,4 +73,19 @@ class YogaSession < ApplicationRecord
 
     errors.add(:teacher, 'is not available')
   end
+
+  def to_stripe_format
+    {
+      price_data: {
+        currency: 'eur',
+        product_data: {
+          name: course.name,
+        },
+        unit_amount: price.to_i * 100,
+      },
+      quantity: 1,
+    }
+  end
+
+
 end
