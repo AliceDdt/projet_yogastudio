@@ -2,6 +2,7 @@
 
 class YogaSessionsController < ApplicationController
   def index
-    @yoga_sessions = YogaSession.all.order(start_date: :asc, created_at: :asc)
+    @yoga_sessions = YogaSession.where('start_date >= NOW()')
+                                .order(start_date: :asc, created_at: :asc)
   end
 end
