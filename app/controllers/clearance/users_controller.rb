@@ -16,7 +16,8 @@ module Clearance
     end
 
     def create
-      @user = Clearance.configuration.user_model.new(permitted_params)
+      params = permitted_params.except(:password_confirmation)
+      @user = Clearance.configuration.user_model.new(user_params)
 
       if @user.save
         sign_in @user
@@ -34,6 +35,7 @@ module Clearance
 
     def update
       @user = current_user
+      params = permitted_params.except(:password_confirmation)
 
       if @user.update(permitted_params)
           redirect_to user_path, notice: 'User successfully updated'
@@ -59,7 +61,8 @@ module Clearance
 
     def permitted_params
       params.require(:user)
-            .permit(:email, :last_name, :first_name, :phone_number, :password,
+            .permit(:email, :last_name, :first_name, :phone_number, 
+                    :password, :password_confirmation,
                     address_attributes: %i[street complementary zip_code city])
     end
   end
