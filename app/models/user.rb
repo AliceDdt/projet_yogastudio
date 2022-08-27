@@ -15,7 +15,6 @@
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  stripe_customer_id :string
-#  stripe_customer_id :string
 #
 # Indexes
 #

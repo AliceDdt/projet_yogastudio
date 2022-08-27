@@ -1,8 +1,7 @@
 <section class="cart" >
   <h2>Mon espace réservation</h2>
-  <% if @cart.empty? %>
+  <% if !@cart %>
     <div id="cart-display">
-      <p>Vous n'avez aucune réservation en cours!</p>
     </div>
     <div id="booking-form" class="hidden" >
     <% else %>
@@ -15,7 +14,7 @@
           <li><%= button_to 'Effacer', remove_from_cart_yoga_session_path(ys), method: :delete %></li>
         </ul>
       <% end%>
-    <%= button_to 'Valider', checkout_create_path, class: 'btn', data: { turbo: false } %>
     <% end %>
+    <%= button_to 'Valider', checkout_create_path, class: 'btn', data: { turbo: false } %>
   </div>
 </section>

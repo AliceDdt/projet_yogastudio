@@ -1,3 +1,4 @@
+import BookingCart from './modules/BookingCart.js'
 import Page from './modules/Page.js'
 
 document.addEventListener('DOMContentLoaded', function () {
