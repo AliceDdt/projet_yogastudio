@@ -8,7 +8,7 @@
 
   <%= button_to "Réserver", add_to_cart_yoga_session_path(yoga_session), 
       method: :post, 
-      data: { turbo_frame: dom_id(yoga_session) },
+      data: { turbo_frame: yoga_session },
       form_class: "form__resa", 
       class: 'btn btn-resa' %>
 <% end %>
