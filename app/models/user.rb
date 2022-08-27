@@ -29,6 +29,10 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :phone_number, presence: true
 
   accepts_nested_attributes_for :address, update_only: true
+  
+  after_create do
+    create_stripe_customer(email)
+  end
 
   # TODO: delete once role gem is installed admin/user
   def admin?
@@ -39,8 +43,16 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  after_create do
+  private
+
+  def create_stripe_customer(email)
+    return ActiveModel::Error.new(self, :email, :already_exists) if stripe_customer_already_exists?(email)
+    
     customer = Stripe::Customer.create(email: email)
     update(stripe_customer_id: customer.id)
+  end
+
+  def stripe_customer_already_exists?(email)
+    Stripe::Customer.list(email: email)
   end
 end

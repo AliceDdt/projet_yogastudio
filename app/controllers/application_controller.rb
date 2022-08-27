@@ -12,8 +12,6 @@ class ApplicationController < ActionController::Base
   end
 
   def load_cart
-    return if session[:cart].empty?
-
-    @cart = YogaSession.find(session[:cart])
+    @cart = YogaSession.where(id: session[:cart])
   end
 end

@@ -21,7 +21,7 @@ module Clearance
 
       if @user.save
         sign_in @user
-        redirect_back_or url_after_create
+        redirect_back_or url_after_create, notice: 'User successfully created'
       else
         flash.now.alert = @user.errors.messages
         render template: 'users/new', status: :unprocessable_entity
@@ -37,11 +37,8 @@ module Clearance
       @user = current_user
       params = permitted_params.except(:password_confirmation)
 
-      if @user.update(params)
-        respond_to do |format|
-          format.html { redirect_to user_path, notice: 'User successfully updated' }
-          # format.turbo_stream # { flash.now[:notice] = 'User successfully updated' }
-        end
+      if @user.update(permitted_params)
+          redirect_to user_path, notice: 'User successfully updated'
       else
         flash.now.alert = @user.errors.messages
         render template: 'users/edit', status: :unprocessable_entity
