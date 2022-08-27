@@ -1,7 +1,3 @@
-<% content_for :head do %>
-  <%= javascript_include_tag 'cart', type: :module %>
-<% end %>
-
 <section class="cart" >
   <h2>Mon espace réservation</h2>
   <% if !@cart %>
@@ -20,9 +16,5 @@
       <% end%>
     <% end %>
     <%= button_to 'Valider', checkout_create_path, class: 'btn', data: { turbo: false } %>
-    <%# <form method="POST" action="cart/validate">
-      <input type="hidden" id="bookingCartJson" name="cart" />
-      <button type="submit" class="btn">Valider</button>
-    </form> %>
   </div>
 </section>
