@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include ActiveStorage::SetCurrent
   include Clearance::Controller
   before_action :initialize_session_cart
   before_action :load_cart

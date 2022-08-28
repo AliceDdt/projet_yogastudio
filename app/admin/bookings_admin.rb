@@ -1,6 +1,8 @@
 Trestle.resource(:bookings) do
+  remove_action :new, :edit, :update
+
   menu do
-    item :bookings, icon: "fa fa-star"
+    item :bookings, icon: "fa fa-calendar", priority: 4
   end
 
   # Customize the table columns shown on the index view.

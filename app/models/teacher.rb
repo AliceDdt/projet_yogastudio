@@ -22,6 +22,9 @@ class Teacher < ApplicationRecord
 
   has_many :yoga_sessions, dependent: :destroy
 
+  validates :picture, presence: true
+  validate :picture_type
+
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -29,4 +32,16 @@ class Teacher < ApplicationRecord
   def available_between?(start_date, end_date)
     yoga_sessions.where('(start_date, end_date) OVERLAPS (?, ?)', start_date, end_date).empty?
   end
+
+  private
+  
+  def picture_type
+    if picture.attached? == false
+      errors.add(:picture, "is missing!")
+    end
+    if !picture.content_type.in?(%('image/jpeg image/png'))
+      errors.add(:picture, "needs to be a jpeg or png!")
+    end
+  end
+
 end

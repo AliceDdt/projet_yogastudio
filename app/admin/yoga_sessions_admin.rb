@@ -1,6 +1,6 @@
 Trestle.resource(:yoga_sessions) do
   menu do
-    item :yoga_sessions, icon: 'fa fa-star'
+    item :yoga_sessions, icon: 'fa fa-calendar', priority: 1
   end
 
   # Customize the table columns shown on the index view.

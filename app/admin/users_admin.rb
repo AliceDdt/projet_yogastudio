@@ -1,8 +1,8 @@
 Trestle.resource(:users) do
-  remove_action :new, :edit, :update
+  remove_action :new, :edit, :update, :destroy
 
   menu do
-    item :users, icon: 'fa fa-star'
+    item :users, icon: "fas fa-users", priority: 5
   end
 
   # Customize the table columns shown on the index view.
@@ -11,7 +11,6 @@ Trestle.resource(:users) do
     column :email
     column :first_name
     column :last_name
-    column :email
     column :created_at, sort: { default: true, default_order: :desc }
     column :updated_at
   end

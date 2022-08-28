@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class TeachersController < ApplicationController
+class TeachersController < ApplicationController  
   def index
     @teachers = Teacher.all
   end
