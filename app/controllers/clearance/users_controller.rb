@@ -17,11 +17,11 @@ module Clearance
 
     def create
       params = permitted_params.except(:password_confirmation)
-      @user = Clearance.configuration.user_model.new(user_params)
+      @user = Clearance.configuration.user_model.new(params)
 
       if @user.save
         sign_in @user
-        redirect_back_or url_after_create, notice: 'User successfully created'
+        redirect_back_or url_after_create
       else
         flash.now.alert = @user.errors.messages
         render template: 'users/new', status: :unprocessable_entity
