@@ -1,3 +1,5 @@
+<%= turbo_stream_from yoga_session %>
+
 <%= turbo_frame_tag yoga_session, class: 'yogaclass__card' do %>
   <p><%= yoga_session.course.name %></p>
   <p>par <%= yoga_session.teacher.first_name %></p>
