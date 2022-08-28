@@ -3,6 +3,6 @@
 class RootController < ApplicationController
   def index
     @courses = Course.all
-    @teachers = User.all
+    @teachers = Teacher.all
   end
 end
