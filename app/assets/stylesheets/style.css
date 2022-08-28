@@ -178,14 +178,24 @@ td {
 	display: none;
 }
 
-.navbar li>a {
+.navbar li>a,
+.navbar li button {
 	text-transform: uppercase;
 	letter-spacing: 0.3rem;
 }
 
+.navbar li>form {
+	margin: 0 auto;
+	width: 100%;
+}
+
+.navbar li button {
+	padding: 0;
+}
+
 .navbar__btn {
 	position: fixed;
-	top: 1.7em;
+	top: 3em;
 	right: 1em;
 	z-index: 20;
 	cursor: pointer;
@@ -266,9 +276,11 @@ td {
 	content: ')';
 }
 
-/**** admin ****/
-.icon--modify {
-	padding: 1rem;
+.icon--signout,
+.icon--signout button {
+	background: none;
+	border: none;
+	cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {
@@ -276,6 +288,7 @@ td {
 	.icon--modify {
 		padding: 3rem;
 	}
+
 }
 
 @media only screen and (min-width: 1280px) {
