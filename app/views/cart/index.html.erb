@@ -1,21 +1,21 @@
 <section class="cart" >
   <h2>Mon espace réservation</h2>
   <% if @cart.empty? %>
-    <div id="cart-display">
+    <div>
       <p>Vous n'avez aucune réservation en cours!</p>
     </div>
-    <div id="booking-form" class="hidden" >
     <% else %>
-      <% @cart.each do |ys| %>
-        <ul>
-          <li><%= ys.course.name %></li>
-          <li><%= "le " + ys.start_date.strftime("%d/%m/%Y") %></li>
-          <li><%= "de #{ys.start_date.strftime("%H:%M")} à #{ys.end_date.strftime("%H:%M")}" %></li>
-          <li><%= ActiveSupport::NumberHelper.number_to_currency(ys.price, precision: 0) %></li>
-          <li><%= button_to 'Effacer', remove_from_cart_yoga_session_path(ys), method: :delete %></li>
-        </ul>
-      <% end%>
-    <%= button_to 'Valider', checkout_create_path, class: 'btn', data: { turbo: false } %>
+    <div class="cart__booking">
+    <% @cart.each do |ys| %>
+      <div>
+        <p><%= ys.course.name %></p>
+        <p><%= "le " + ys.start_date.strftime("%d/%m/%Y") %></p>
+        <p><%= "de #{ys.start_date.strftime("%H:%M")} à #{ys.end_date.strftime("%H:%M")}" %></p>
+        <p><%= ActiveSupport::NumberHelper.number_to_currency(ys.price, precision: 0) %></p>
+        <p><%= button_to 'Effacer', remove_from_cart_yoga_session_path(ys), method: :delete %></p>
+      </div>
     <% end %>
-  </div>
+    </div>
+    <%= button_to 'Valider', checkout_create_path, class: 'btn', data: { turbo: false } %>
+  <% end %>
 </section>
