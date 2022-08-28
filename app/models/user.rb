@@ -55,6 +55,6 @@ class User < ApplicationRecord
   end
 
   def stripe_customer_already_exists?(email)
-    Stripe::Customer.list(email: email)
+    Stripe::Customer.list(email: email) == email
   end
 end
