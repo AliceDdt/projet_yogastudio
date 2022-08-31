@@ -1,4 +1,4 @@
-<%= form_with model: @user, id: 'form' do |form| %>
+<%= form_with model: @user, id: 'form', data: { controller: 'form', action: 'form#validate' } do |form| %>
   <div class="field">
     <%= form.label :email %>
     <%= form.text_field :email, type: 'email' %>
