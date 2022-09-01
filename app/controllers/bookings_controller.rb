@@ -10,26 +10,27 @@ class BookingsController < ApplicationController
     end
 
     stripe_session = Stripe::Checkout::Session.create({
-                                                    customer: current_user.stripe_customer_id,
-                                                    payment_method_types: ['card'],
-                                                    line_items: stripe_line_items,
-                                                    mode: 'payment',
-                                                    success_url: checkout_success_url + "?session_id={CHECKOUT_SESSION_ID}",
-                                                    cancel_url: checkout_cancel_url
-                                                  })
+                                                        customer: current_user.stripe_customer_id,
+                                                        payment_method_types: ['card'],
+                                                        line_items: stripe_line_items,
+                                                        mode: 'payment',
+                                                        success_url: "#{checkout_success_url}?session_id={CHECKOUT_SESSION_ID}",
+                                                        cancel_url: checkout_cancel_url
+                                                      })
 
-    redirect_to stripe_session.url, status: 303, allow_other_host: true
+    redirect_to stripe_session.url, status: :see_other, allow_other_host: true
   end
 
   private
 
-  def success #TO DO rajouter les variables dans success.html.erb sinon virer la méthode
+  # TO DO rajouter les variables dans success.html.erb sinon virer la méthode
+  def success
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
     @customer = Stripe::Customer.retrieve(session.customer)
   end
 
-# to do : gérer le cas d'échec du paiement :
+  # to do : gérer le cas d'échec du paiement :
 
   def stripe_line_items
     @cart.map do |item|

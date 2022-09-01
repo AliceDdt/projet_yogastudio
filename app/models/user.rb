@@ -25,11 +25,11 @@ class User < ApplicationRecord
   include Clearance::User
 
   validates :first_name, :last_name, :phone_number, presence: true
-  
+
   has_one :address, as: :addressable, dependent: :destroy
 
   accepts_nested_attributes_for :address, update_only: true
-  
+
   after_create do
     create_stripe_customer(email)
   end
@@ -49,7 +49,7 @@ class User < ApplicationRecord
 
   def create_stripe_customer(email)
     return ActiveModel::Error.new(self, :email, :already_exists) if stripe_customer_already_exists?(email)
-    
+
     customer = Stripe::Customer.create(email: email)
     update(stripe_customer_id: customer.id)
   end

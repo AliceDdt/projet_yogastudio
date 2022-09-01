@@ -8,7 +8,7 @@
 #  end_date            :datetime         not null
 #  number_booking      :integer          default(0), not null
 #  number_participants :integer          not null
-#  price               :float            not null
+#  price               :integer          not null
 #  start_date          :datetime         not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
@@ -30,6 +30,13 @@ class YogaSession < ApplicationRecord
   belongs_to :teacher
 
   has_many :bookings, dependent: :destroy
+
+  validates :start_date, :end_date, :number_booking,
+            :number_participants, :price,
+            presence: true
+
+  validates :number_booking, :number_participants, :price,
+            numericality: true
 
   validate :start_end_on_same_day,
            :start_is_before_end_date,
@@ -79,13 +86,11 @@ class YogaSession < ApplicationRecord
       price_data: {
         currency: 'eur',
         product_data: {
-          name: course.name,
+          name: course.name
         },
-        unit_amount: price.to_i * 100,
+        unit_amount: price.to_i * 100
       },
-      quantity: 1,
+      quantity: 1
     }
   end
-
-
 end

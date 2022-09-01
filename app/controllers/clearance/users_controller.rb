@@ -38,7 +38,7 @@ module Clearance
       params = permitted_params.except(:password_confirmation)
 
       if @user.update(permitted_params)
-          redirect_to user_path, notice: 'User successfully updated'
+        redirect_to user_path, notice: 'User successfully updated'
       else
         flash.now.alert = @user.errors.messages
         render template: 'users/edit', status: :unprocessable_entity
@@ -61,7 +61,7 @@ module Clearance
 
     def permitted_params
       params.require(:user)
-            .permit(:email, :last_name, :first_name, :phone_number, 
+            .permit(:email, :last_name, :first_name, :phone_number,
                     :password, :password_confirmation,
                     address_attributes: %i[street complementary zip_code city])
     end
