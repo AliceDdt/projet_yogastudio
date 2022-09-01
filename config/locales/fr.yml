@@ -7,3 +7,22 @@ fr:
         complementary: Complément d'adresse
         zip_code: Code postal
         city: Ville
+      teacher:
+        last_name: Nom
+        first_name: Prénom
+        phone_number: Numéro de téléphone
+        picture: Photo
+      course:
+        name: Intitulé
+        short_description: Description courte
+        long_description: Description longue
+      yoga_session:
+        course_id: Cours concerné
+        teacher_id: Enseignant.e
+        start_date: Date et heure de début
+        end_date: Date et heure de fin
+        number_participants: Nombre max de participant.e.s
+        price: Prix
+      administrator:
+        first_name: Prénom
+        last_name: Nom

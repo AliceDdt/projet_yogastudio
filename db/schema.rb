@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_09_165658) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_01_085559) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -110,7 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_09_165658) do
   create_table "yoga_sessions", force: :cascade do |t|
     t.integer "number_participants", null: false
     t.integer "number_booking", default: 0, null: false
-    t.float "price", null: false
+    t.integer "price", null: false
     t.bigint "course_id"
     t.bigint "teacher_id"
     t.datetime "created_at", null: false

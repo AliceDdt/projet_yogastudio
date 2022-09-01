@@ -1,33 +1,68 @@
 fr:
   admin:
-    addresses:
-        breadcrumbs:
-          index: Adresses
-        titles:
-          index: Adresses
-        table:
-          headers:
-            auth: ""
+    auth:
+      error: Identifiant ou mot de passe incorrect.
+      login: Me connecter
+      logout: Déconnexion
+      my_account: Mon compte
+      remember_me: Se souvenir de moi
+    breadcrumbs: 
+      yoga_sessions: Planning
+      teachers: Enseignants
+      courses: Cours
+      bookings: Réservations
+      users: Utilisateurs
+      auth/administrators: Administrateurs
+    yoga_sessions:
+      titles:
+        index: Planning
+        edit: Edition d'une séance
+      table:
+        headers:
+          course: Cours
+          teacher: Enseignant
+          start_date: Date
+          remaining_seats: Nb places restantes
     teachers:
-        breadcrumbs:
-          index: Enseignants
-        titles:
-          index: Enseignants
-        table:
-          headers:
-            auth: ""
-    menu:
-      group:
-        addresses: Adresses
+      titles:
+        index: Enseignants 
+        edit: Edition d'un.e enseignant.e
+    courses:
+      titles:
+        index: Cours
+        edit: Edition d'un cours
+      table:
+        headers:
+          name: Intitulé
+    bookings:
+      titles:
+        index: Réservations
+      table:
+        headers:
+          user: Client.e
+          yoga_session: Séance
+          date_yoga_session: Date séance
+    users:
+      titles:
+        index: Utilisateurs
+    auth/administrators:
+      titles:
+        index: Administrateurs
+        edit: Editer les informations
     navigation:
       items:
-        addresses: Adresses
-        bookings: Réservations
-        courses: Cours
-        users: Utilisateurs
         yoga_sessions: Planning
         teachers: Enseignants
+        courses: Cours
+        bookings: Réservations
+        users: Utilisateurs
+        administrators: Administrateurs
+    table:
+      headers:
+        first_name: Prénom
+        last_name: Nom
+        created_at: Date de création
+        updated_at: Mis à jour
 
-       
     
 
