@@ -1,14 +1,14 @@
+# frozen_string_literal: true
+
 Trestle.resource(:administrators, model: Administrator, scope: Auth) do
   menu do
     group :configuration, priority: :last do
-      item :administrators, icon: "fas fa-users"
+      item :administrators, icon: 'fas fa-users'
     end
   end
 
   table do
-    column :avatar, header: false do |administrator|
-      avatar_for(administrator)
-    end
+    column :id
     column :email, link: true
     column :first_name
     column :last_name
@@ -17,7 +17,7 @@ Trestle.resource(:administrators, model: Administrator, scope: Auth) do
     end
   end
 
-  form do |administrator|
+  form do |_administrator|
     text_field :email
 
     row do

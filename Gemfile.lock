@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/rzilient-club/trestle-active_storage.git
+  revision: 3d066c7d2c401d04d12ea346f93e1201c45454b7
+  ref: 3d066c7d2c401d04d12ea346f93e1201c45454b7
+  specs:
+    trestle-active_storage (3.0.1)
+      rails (~> 7.0)
+      trestle (~> 0.9.0, >= 0.9.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -46,6 +55,11 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_storage_validations (0.9.8)
+      activejob (>= 5.2.0)
+      activemodel (>= 5.2.0)
+      activestorage (>= 5.2.0)
+      activesupport (>= 5.2.0)
     activejob (7.0.3)
       activesupport (= 7.0.3)
       globalid (>= 0.3.6)
@@ -300,6 +314,8 @@ GEM
     trestle-auth (0.4.4)
       bcrypt (~> 3.1.7)
       trestle (~> 0.9.0, >= 0.9.3)
+    trestle-search (0.4.3)
+      trestle (~> 0.9.0, >= 0.9.3)
     turbo-rails (1.1.1)
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
@@ -329,6 +345,7 @@ PLATFORMS
   x86_64-darwin-20
 
 DEPENDENCIES
+  active_storage_validations
   annotate
   aws-sdk-s3
   bootsnap
@@ -355,7 +372,9 @@ DEPENDENCIES
   stimulus-rails
   stripe
   trestle
+  trestle-active_storage!
   trestle-auth
+  trestle-search
   turbo-rails
   tzinfo-data
   web-console

@@ -34,7 +34,9 @@
         <div class="team__element">
             <div class="team__picture">
                 <div>
-                <%# <img src="uploads/<?= $item['Picture'];?>" alt="photo de <?= htmlspecialchars($item['FirstName']).' '.htmlspecialchars($item['LastName']); ?>"> %>
+				<% if teacher.picture.url %>
+				<img src="<%= rails_blob_path(teacher.picture, disposition: "attachment", expires_in: 60.seconds) %>" alt="photo de <%= teacher.full_name %>">
+				<% end %>
                 </div>
             </div>
             <h3><%= teacher.full_name %></h3>
