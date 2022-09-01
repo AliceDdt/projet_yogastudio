@@ -14,6 +14,7 @@
 #  updated_at   :datetime         not null
 #
 class Teacher < ApplicationRecord
+  # Relations
   has_one_attached :picture
 
   has_one :address, as: :addressable, dependent: :destroy
@@ -22,8 +23,19 @@ class Teacher < ApplicationRecord
 
   has_many :yoga_sessions, dependent: :destroy
 
-  validates :picture, presence: true
-  validate :picture_type
+  # Validations
+  validates :last_name, :first_name,
+            :bio, :phone_number,
+            presence: true
+
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
+
+  validates_associated :address, presence: true
+
+  validates :picture,
+            attached: true,
+            content_type: %i[png jpg jpeg],
+            size: { less_than: 15.megabytes, message: 'picture is too large' }
 
   def full_name
     "#{first_name} #{last_name}"
@@ -32,16 +44,4 @@ class Teacher < ApplicationRecord
   def available_between?(start_date, end_date)
     yoga_sessions.where('(start_date, end_date) OVERLAPS (?, ?)', start_date, end_date).empty?
   end
-
-  private
-  
-  def picture_type
-    if picture.attached? == false
-      errors.add(:picture, "is missing!")
-    end
-    if !picture.content_type.in?(%('image/jpeg image/png'))
-      errors.add(:picture, "needs to be a jpeg or png!")
-    end
-  end
-
 end

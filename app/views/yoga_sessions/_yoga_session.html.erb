@@ -3,7 +3,7 @@
   <p>par <%= yoga_session.teacher.first_name %></p>
   <p><%= "le " + yoga_session.start_date.strftime("%d/%m/%Y") %></p>
   <p><%= "de #{yoga_session.start_date.strftime("%H:%M")} à #{yoga_session.end_date.strftime("%H:%M")}" %></p>
-  <p><%= ActiveSupport::NumberHelper.number_to_currency(yoga_session.price, precision: 0) %></p>
+  <p><%= ActiveSupport::NumberHelper.number_to_currency(yoga_session.price / 100.0)  %></p>
   <% if yoga_session.remaining_seats > 0 %>
   <p><%= "#{pluralize(yoga_session.remaining_seats, 'place')} #{'restante'.pluralize(yoga_session.remaining_seats)}" %> </p>
 

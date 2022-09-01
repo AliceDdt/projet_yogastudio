@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.5'
 
+gem 'active_storage_validations'
 gem 'aws-sdk-s3', require: false
 gem 'bootsnap', require: false
 gem 'clearance'
@@ -22,8 +23,10 @@ gem 'sqlite3', '~> 1.4'
 gem 'stimulus-rails'
 gem 'stripe'
 gem 'trestle'
-gem 'trestle-active_storage', git: 'https://github.com/rzilient-club/trestle-active_storage.git', ref: '3d066c7d2c401d04d12ea346f93e1201c45454b7'
+gem 'trestle-active_storage', git: 'https://github.com/rzilient-club/trestle-active_storage.git',
+                              ref: '3d066c7d2c401d04d12ea346f93e1201c45454b7'
 gem 'trestle-auth'
+gem 'trestle-search'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 

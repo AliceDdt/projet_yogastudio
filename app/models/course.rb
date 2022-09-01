@@ -13,4 +13,7 @@
 #
 class Course < ApplicationRecord
   has_many :yoga_sessions
+
+  validates :name, :short_description, :long_description,
+            presence: true
 end

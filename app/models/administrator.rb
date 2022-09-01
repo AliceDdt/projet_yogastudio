@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: administrators
@@ -15,4 +17,6 @@
 class Administrator < ApplicationRecord
   include Trestle::Auth::ModelMethods
   include Trestle::Auth::ModelMethods::Rememberable
+
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
 end
