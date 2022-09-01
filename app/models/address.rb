@@ -20,4 +20,7 @@
 #
 class Address < ApplicationRecord
   belongs_to :addressable, polymorphic: true
+
+  validates :street, :zip_code, :city,
+            presence: true
 end
