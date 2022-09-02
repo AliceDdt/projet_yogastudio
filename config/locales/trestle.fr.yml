@@ -16,21 +16,28 @@ fr:
     yoga_sessions:
       titles:
         index: Planning
-        edit: Edition d'une séance
+        new: Séance (ajout)
+        edit: Séance (modification)
       table:
         headers:
           course: Cours
           teacher: Enseignant
           start_date: Date
           remaining_seats: Nb places restantes
+      form:
+        prompts:
+          select_course: Sélectionner un cours
+          select_teacher: Sélectionner un.e enseignant.e
     teachers:
       titles:
         index: Enseignants 
-        edit: Edition d'un.e enseignant.e
+        new: Enseignant.e (ajout)
+        edit: Enseignant.e (modification)
     courses:
       titles:
         index: Cours
-        edit: Edition d'un cours
+        new: Cours (ajout)
+        edit: Cours (modification)
       table:
         headers:
           name: Intitulé
