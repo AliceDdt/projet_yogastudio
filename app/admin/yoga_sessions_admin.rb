@@ -18,9 +18,9 @@ Trestle.resource(:yoga_sessions) do
 
   # Customize the form fields shown on the new/edit views.
   #
-  form do |_yoga_session|
-    select :course_id, Course.all, { prompt: 'Select course' }
-    select :teacher_id, Teacher.all, { prompt: 'Select teacher' }
+  form do |yoga_session|
+    select :course_id, Course.all, prompt: t('admin.yoga_sessions.form.prompts.select_course')
+    select :teacher_id, Teacher.all, prompt: t('admin.yoga_sessions.form.prompts.select_teacher')
     row do
       col(:sm) { datetime_field :start_date }
       col(:sm) { datetime_field :end_date }
@@ -28,9 +28,7 @@ Trestle.resource(:yoga_sessions) do
     row do
       col(:sm) { number_field :number_participants }
       col(:sm) do
-        text_field :price do
-          ActiveSupport::NumberHelper.number_to_currency(instance.price / 100.0)
-        end
+        text_field :price #value: yoga_session.price/100.0
       end
     end
   end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Trestle.resource(:bookings) do
-  remove_action :new, :edit, :update
+  remove_action :new, :show, :edit, :update
 
   menu do
     item :bookings, icon: 'fa fa-calendar', priority: 4
