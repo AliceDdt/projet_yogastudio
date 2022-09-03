@@ -1,50 +1,47 @@
-<%= form_with model: @user, id: 'form', data: { controller: 'form', action: 'form#validate' } do |form| %>
+<%= form_with model: @user, id: 'form', data: { controller: 'form', remote: true } do |form| %>
   <div class="field">
     <%= form.label :email %>
-    <%= form.text_field :email, type: 'email' %>
+    <%= form.email_field :email, 'data-form-target' => 'input', 'aria-required' => true %>
   </div>
   <div class="field">
     <%= form.label :password %>
-    <%= form.password_field :password %>
+    <%= form.password_field :password, 'data-form-target' => 'input', 'aria-required' => true %>
   </div>
   <div class="field">
     <%= form.label :password_confirmation %>
-    <%= form.password_field :password_confirmation %>
+    <%= form.password_field :password_confirmation, 'data-form-target' => 'input', 'aria-required' => true %>
   </div>
   <div class="field">
     <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
+    <%= form.text_field :last_name, 'data-form-target' => 'input', 'aria-required' => true %>
   </div>
   <div class="field">
     <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
+    <%= form.text_field :first_name, 'data-form-target' => 'input', 'aria-required' => true %>
   </div>
   <div class="field">
     <%= form.label :phone_number %>
-    <%= form.text_field :phone_number %>
+    <%= form.text_field :phone_number, 'data-form-target' => 'input', 'aria-required' => true %>
   </div>
 
   <%= form.fields_for :address, @user.address || @user.build_address do |ff| %>
     <div class="field">
       <%= ff.label :street %>
-      <%= ff.text_field :street %>
+      <%= ff.text_field :street, 'data-form-target' => 'input', 'aria-required' => true %>
     </div>
     <div class="field">
       <%= ff.label :complementary %>
-      <%= ff.text_field :complementary %>
+      <%= ff.text_field :complementary, 'data-form-target' => 'input', 'aria-required' => true %>
     </div>
     <div class="field">
       <%= ff.label :zip_code %>
-      <%= ff.text_field :zip_code %>
+      <%= ff.text_field :zip_code, 'data-form-target' => 'input', 'aria-required' => true %>
     </div>
     <div class="field">
       <%= ff.label :city %>
-      <%= ff.text_field :city %>
+      <%= ff.text_field :city, 'data-form-target' => 'input', 'aria-required' => true %>
     </div>
   <% end %>
 
    <%= form.submit class: 'btn' %>
 <% end %>
-
-
-

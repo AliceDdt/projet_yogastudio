@@ -1,80 +1,107 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
+import Rails from "@rails/ujs";
 
 // Connects to data-controller="form"
 export default class extends Controller {
-  connect() {
-    this.isValid = false; //test if inputs are correct
+	static targets = [ "input" ];
+
+  initialize() {
+		this.isValid = false; //test if inputs are correct
+		this.errors= new Map();
+		this.element.setAttribute('novalidate', true)
+		this.element.addEventListener('submit', this.onSubmit)
+	  this.element.addEventListener("ajax:beforeSend", this.onSubmit);
   }
 
+	onSubmit = (event) => {
+		if(!this.isValid){
+			event.preventDefault();
+			this.validateFields();
+			this.focusFirstInvalidField();
+		}
+	}
+
 	//form validation process
-	validate(event) {
-    event.preventDefault();
+	validateFields() {
 		//reseting error messages
-		//this.resetErrors();
+		this.resetErrors();
+
+		let password_input = this.inputTargets.find(
+      (e) => e.name == "user[password]"
+    );
 
 		/*fields verification
 		errors are pushed into errorTab array*/
-		for (const field of this.formFields) {
+		for (let input of this.inputTargets) {
 
-			this.capitalize(field, 'user[last_name]');
-			this.capitalize(field, 'user[first_name]');
-			this.capitalize(field, 'user[address_attributes][city]');
+			this.capitalize(input, "user[last_name]");
+			this.capitalize(input, "user[first_name]");
+			this.capitalize(input, "user[address_attributes][city]");
 
 			//if field is empty
-			if (field.value == '' && field.name != 'user[address_attributes][complementary]') {
-        this.checkValidityForField(field, "Champ obligatoire");
+			if (input.value == '' && input.name != 'user[address_attributes][complementary]') {
+				this.createError(input.name,  "Champ obligatoire !");
 			}
 
-			if (field.name == 'user[last_name]' && field.value != '' && !isNaN(field.value)
-				|| field.name == 'user[first_name]' && field.value != '' && !isNaN(field.value)) {
-          this.checkValidityForField(field, "Nom et/ou prénom ne peuvent pas être numériques !");
+			else if (input.name == 'user[last_name]' && !isNaN(input.value) 
+				|| input.name == 'user[first_name]' && !isNaN(input.value)) {
+				this.createError(input.name, "nom et/ou prénom ne peuvent pas être numériques !");
+			}
+
+			else if (input.name == "user[email]" && input.value != '' && !this.emailValidator(input.value)) {
+				this.createError(input.name, "Email non valide  !");
+			}
+
+			else if (input.name == "user[password]" && input.value != '' && !this.pwdValidator(input.value)) {
+				this.createError(input.name, "Le mot de passe doit contenir au moins 8 caractères dont 1 chiffre, 1 majuscule et 1 caractère spécial");
+			}
+
+			else if (input.name == "user[password_confirmation]" && password_input.value != input.value) {
+				this.createError(input.name, "Les 2 mots de passe ne correspondent pas");
 			}
 		}
 
-		if (user_email.value != '' && !this.emailValidator(user_email.value)) {
-      this.checkValidityForField(user_email, "Email non valide !");
+			this.showErrors()
 		}
 
-		if (user_password.value != '' && !this.pwdValidator(user_password.value)) {
-      this.checkValidityForField(user_password, "Le mot de passe doit contenir au moins 8 caractères dont 1 chiffre, 1 majuscule et 1 caractère spécial");
+	//display errors 
+	showErrors() {
+		for (let [key, value] of this.errors) {
+			let input = this.inputTargets.find((e) => e.name == key);//get the input causing the error
+			input.classList.add('error-input');
+			input.insertAdjacentHTML("afterend", this.spanErrorHtml(value)); //retrieve span
 		}
-
-		if (user_password.value != user_password_confirmation.value) {
-      this.checkValidityForField(user_password, "Les 2 mots de passe ne correspondent pas");
-    }
-
-			//control ok
-			if (this.isValid) {
-				// this.form.submit();
-				// Rails.fire(this.element, 'submit');
-			}
-		
 	}
 
-  get formFields() {
-    return Array.from(this.element.elements);
-  }
+	//create an error
+	createError(field, message) {
+		this.isValid = false;//if there is an error isValid is set to false
+		this.errors.set(field, message);
+	}
 
-  checkValidityForField (field, message) {
-    this.isValid = false;
-    field.setCustomValidity(message);
-    this.showErrorForInvalidField(field);
-  }
+	spanErrorHtml(message) {
+		return `<span class="form-error">${message}</span>`;
+	}
 
-  refreshErrorForInvalidField (field, isValid) {
-    this.removeExistingErrorMessage(field);
-    if (!isValid)
-      this.showErrorForInvalidField(field);
-  }
+	//delete all errors 
+	resetErrors() {
+		this.isValid = true; //reseting isValid
 
-  showErrorForInvalidField (field) {
-    field.classList.add('error-input');
-    field.insertAdjacentHTML('afterend', this.buildFieldErrorHtml(field))
-  }
+		for (let [key, value] of this.errors) {
+			let input = this.inputTargets.find((e) => e.name == key);
+			input.classList.remove('error-input');
+		}
 
-  buildFieldErrorHtml (field) {
-    return `<span class="form-error">${field.validationMessage}</span>`
-  }
+		this.errors.clear(); //empty array
+
+		for (const span of document.querySelectorAll('span.form-error')) {
+			span.remove();  //remove span
+		}
+	}
+
+	focusFirstInvalidField(){
+		this.element.querySelector('.error-input').focus()
+	}
 
 	/*email validation method 
 	@params string email
@@ -104,5 +131,4 @@ export default class extends Controller {
 			return field.value;
 		}
 	}
-
 }
