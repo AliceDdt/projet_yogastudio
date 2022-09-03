@@ -8,8 +8,6 @@ fr:
     failure_when_missing_email: Email doit être rempli.
   helpers:
     label:
-      password_reset:
-        password: Nouveau mot de passe
       session:
         password: Mot de passe
       user:
@@ -18,6 +16,7 @@ fr:
         phone_number: Numéro de téléphone
         password: Mot de passe
         password_confirmation: Confirmer mot de passe
+        submit: Valider
     submit:
       password:
         submit: Réinitialiser
@@ -33,7 +32,6 @@ fr:
       sign_out: Déconnexion
   sessions:
     form:
-      forgot_password: Mot de passe oublié ?
       sign_up: Inscription
     new:
       title: Connexion
@@ -42,4 +40,4 @@ fr:
       sign_in: Connexion
       title: Inscription
     edit:
-      title: Modifier
+      title: Modifier son profil

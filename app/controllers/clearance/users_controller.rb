@@ -21,10 +21,16 @@ module Clearance
 
       if @user.save
         sign_in @user
-        redirect_back_or url_after_create
+        respond_to do |format|
+          format.html {  redirect_back_or url_after_create }
+          format.js { render js: "window.location='#{root_path}'" }
+        end
       else
-        flash.now.alert = @user.errors.messages
-        render template: 'users/new', status: :unprocessable_entity
+        flash[:alert] = @user.errors.messages
+        respond_to do |format|
+          format.html { render template: 'users/new', status: :unprocessable_entity }
+          format.js { render js: "window.location='#{sign_up_path}'" }
+        end
       end
     end
 
@@ -37,11 +43,18 @@ module Clearance
       @user = current_user
       params = permitted_params.except(:password_confirmation)
 
-      if @user.update(permitted_params)
-        redirect_to user_path, notice: 'User successfully updated'
+      if @user.update(params)
+        flash[:notice] = 'User successfully updated'
+        respond_to do |format|
+          format.html { redirect_to user_path }
+          format.js { render js: "window.location='#{user_path}'" }
+        end
       else
-        flash.now.alert = @user.errors.messages
-        render template: 'users/edit', status: :unprocessable_entity
+        flash[:alert] = @user.errors.messages
+        respond_to do |format|
+          format.html { render template: 'users/edit', status: :unprocessable_entity }
+          format.js { render js: "window.location='#{edit_user_path}'" }
+        end
       end
     end
 

@@ -1,12 +1,12 @@
 <%= form_for :session, class: "form", url: session_path do |form| %>
   <div class="field">
     <%= form.label :email %>
-    <%= form.text_field :email, type: 'email' %>
+    <%= form.email_field :email, 'aria-required' => true %>
   </div>
 
   <div class="field">
     <%= form.label :password %>
-    <%= form.password_field :password %>
+    <%= form.password_field :password, 'aria-required' => true  %>
   </div>
 
   <div>
@@ -18,8 +18,5 @@
       <div>Pas encore de compte ? <%= link_to t(".sign_up"), sign_up_path %>
       </div>
     <% end %>
-    <div>
-    <%= link_to t(".forgot_password"), new_password_path %>
-    </div>
   </div>
 <% end %>
