@@ -17,12 +17,13 @@ fr:
       titles:
         index: Planning
         new: Séance (ajout)
-        edit: Séance (modification)
+        edit: Séance (détails)
       table:
         headers:
           course: Cours
           teacher: Enseignant
           start_date: Date
+          number_participants: Nb total places
           remaining_seats: Nb places restantes
       form:
         prompts:

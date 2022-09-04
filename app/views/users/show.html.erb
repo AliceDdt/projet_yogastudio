@@ -30,7 +30,7 @@
 						<td><%= b.yoga_session.course.name %></td>
 						<td><%= b.yoga_session.start_date.strftime("%d/%m/%Y") %></td>
 						<td><%= b.yoga_session.start_date.strftime("%H:%M") %></td>
-						<td><%= ActiveSupport::NumberHelper.number_to_currency(b.yoga_session.price, precision: 0) %></td>
+						<td><%= ActiveSupport::NumberHelper.number_to_currency(b.yoga_session.price / 100.0)  %></td>
 				</tr>
 			<% end %>
 			<tbody>

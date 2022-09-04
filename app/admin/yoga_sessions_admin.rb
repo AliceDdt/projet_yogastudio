@@ -1,24 +1,23 @@
 # frozen_string_literal: true
 
 Trestle.resource(:yoga_sessions) do
+  remove_action :edit, :update
+
   menu do
     item :yoga_sessions, icon: 'fa fa-calendar', priority: 1
   end
 
-  # Customize the table columns shown on the index view.
-  #
   table do
     column :id
     column :course
     column :teacher
     column :start_date
+    column :number_participants
     column :remaining_seats, ->(yoga_session) { yoga_session.remaining_seats }
     actions
   end
 
-  # Customize the form fields shown on the new/edit views.
-  #
-  form do |yoga_session|
+  form do |_yoga_session|
     select :course_id, Course.all, prompt: t('admin.yoga_sessions.form.prompts.select_course')
     select :teacher_id, Teacher.all, prompt: t('admin.yoga_sessions.form.prompts.select_teacher')
     row do
@@ -28,7 +27,7 @@ Trestle.resource(:yoga_sessions) do
     row do
       col(:sm) { number_field :number_participants }
       col(:sm) do
-        text_field :price #value: yoga_session.price/100.0
+        text_field :price # value: yoga_session.price/100.0
       end
     end
   end

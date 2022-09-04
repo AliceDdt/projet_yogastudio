@@ -4,16 +4,18 @@
 #
 # Table name: yoga_sessions
 #
-#  id                  :bigint           not null, primary key
-#  end_date            :datetime         not null
-#  number_booking      :integer          default(0), not null
-#  number_participants :integer          not null
-#  price               :integer          not null
-#  start_date          :datetime         not null
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
-#  course_id           :bigint
-#  teacher_id          :bigint
+#  id                     :bigint           not null, primary key
+#  end_date               :datetime         not null
+#  number_booking         :integer          default(0), not null
+#  number_participants    :integer          not null
+#  price                  :integer          not null
+#  start_date             :datetime         not null
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  course_id              :bigint
+#  stripe_price_id        :string
+#  stripe_yoga_session_id :string
+#  teacher_id             :bigint
 #
 # Indexes
 #
@@ -35,8 +37,9 @@ class YogaSession < ApplicationRecord
             :number_participants, :price,
             presence: true
 
-  validates :number_booking, :number_participants, :price,
-            numericality: true
+  validates :number_booking, :price, numericality: true
+
+  validates :number_participants, numericality: { greater_than: 0 }
 
   validate :start_end_on_same_day,
            :start_is_before_end_date,
@@ -44,10 +47,20 @@ class YogaSession < ApplicationRecord
            :in_between_opening_hours,
            :teacher_availability
 
+  after_create :create_stripe_yoga_session
+
   def remaining_seats
     number_participants - number_booking
   end
 
+  # callback method
+  def create_stripe_yoga_session
+    product = Stripe::Product.create(name: course.name, description: start_date.strftime('%d/%m/%Y'))
+    product_price = Stripe::Price.create(product: product.id, unit_amount: price, currency: 'eur')
+    update_columns(stripe_yoga_session_id: product.id, stripe_price_id: product_price.id)
+  end
+
+  # custom validation methods
   def start_end_on_same_day
     return if start_date.to_date == end_date.to_date
 
@@ -81,16 +94,17 @@ class YogaSession < ApplicationRecord
     errors.add(:teacher, 'is not available')
   end
 
+  # building stripe line for yoga_session
   def to_stripe_format
     {
-      price_data: {
-        currency: 'eur',
-        product_data: {
-          name: course.name
-        },
-        unit_amount: price.to_i * 100
-      },
+      price: stripe_price_id,
       quantity: 1
     }
+  end
+
+  def already_booked?(user_id, yoga_session_id)
+    return unless Booking.exists?(user_id: user_id, yoga_session_id: yoga_session_id)
+
+    errors.add(:yoga_session, 'already booked')
   end
 end
