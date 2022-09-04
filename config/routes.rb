@@ -31,10 +31,6 @@ Rails.application.routes.draw do
     get 'success', to: 'bookings#success', as: 'checkout_success'
   end
 
-  # resources :bookings, only: [:create] do
-  #   post 'create', to: 'bookings#create', as: ' '
-  #   get 'success', to: 'checkout#success', as: 'checkout_success'
-  # end
-
+  post '/webhook' =>  'webhooks#create', as: 'webhook'
   resources :cart, only: [:index]
 end
