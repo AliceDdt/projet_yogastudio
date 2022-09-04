@@ -5,9 +5,7 @@ class BookingsController < ApplicationController
 
   def create
     @cart.each do |item|
-      if item.already_booked?(current_user.id, item.id)
-        return redirect_to cart_index_path, alert: item.errors.messages
-      end
+      return redirect_to cart_index_path, alert: item.errors.messages if item.already_booked?(current_user.id, item.id)
     end
 
     stripe_session = Stripe::Checkout::Session.create({

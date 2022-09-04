@@ -39,7 +39,7 @@ class WebhooksController < ApplicationController
     user = User.find_by(stripe_customer_id: checkout_session.customer)
 
     session = event.data.object
-    session_with_expand = Stripe::Checkout::Session.retrieve({ id: session.id, expand: ['line_items']})
+    session_with_expand = Stripe::Checkout::Session.retrieve({ id: session.id, expand: ['line_items'] })
     session_with_expand.line_items.data.each do |line_item|
       ys = YogaSession.find_by(stripe_yoga_session_id: line_item.price.product)
       Booking.create(yoga_session: ys, user: user)

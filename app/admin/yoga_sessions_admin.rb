@@ -2,7 +2,7 @@
 
 Trestle.resource(:yoga_sessions) do
   remove_action :edit, :update
-  
+
   menu do
     item :yoga_sessions, icon: 'fa fa-calendar', priority: 1
   end
@@ -27,7 +27,7 @@ Trestle.resource(:yoga_sessions) do
     row do
       col(:sm) { number_field :number_participants }
       col(:sm) do
-        text_field :price #value: yoga_session.price/100.0
+        text_field :price # value: yoga_session.price/100.0
       end
     end
   end

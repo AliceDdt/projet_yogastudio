@@ -30,9 +30,7 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :address, update_only: true
 
-  after_create do
-    create_stripe_customer(email)
-  end
+  after_create :create_stripe_customer
 
   has_many :bookings, dependent: :destroy
 
@@ -47,7 +45,7 @@ class User < ApplicationRecord
 
   private
 
-  def create_stripe_customer(email)
+  def create_stripe_customer
     return ActiveModel::Error.new(self, :email, :already_exists) if stripe_customer_already_exists?(email)
 
     customer = Stripe::Customer.create(email: email)
