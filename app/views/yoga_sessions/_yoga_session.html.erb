@@ -1,22 +1,24 @@
-<%= turbo_frame_tag yoga_session, class: 'yogaclass__card' do %>
-  <p><%= yoga_session.course.name %></p>
-  <p>par <%= yoga_session.teacher.first_name %></p>
-  <p><%= "le " + yoga_session.start_date.strftime("%d/%m/%Y") %></p>
-  <p><%= "de #{yoga_session.start_date.strftime("%H:%M")} à #{yoga_session.end_date.strftime("%H:%M")}" %></p>
-  <p><%= ActiveSupport::NumberHelper.number_to_currency(yoga_session.price / 100.0)  %></p>
-  <% if yoga_session.remaining_seats > 0 %>
-  <p><%= "#{pluralize(yoga_session.remaining_seats, 'place')} #{'restante'.pluralize(yoga_session.remaining_seats)}" %> </p>
+<%= turbo_frame_tag yoga_session do %>
+  <div class="yogaclass__card">
+    <h3><%= yoga_session.course.name %></h3>
+    <p>par <%= yoga_session.teacher.first_name %></p>
+    <p><%= "le " + yoga_session.start_date.strftime("%d/%m/%Y") %></p>
+    <p><%= "de #{yoga_session.start_date.strftime("%H:%M")} à #{yoga_session.end_date.strftime("%H:%M")}" %></p>
+    <p><%= ActiveSupport::NumberHelper.number_to_currency(yoga_session.price / 100.0)  %></p>
+    <% if yoga_session.remaining_seats > 0 %>
+    <p><%= "#{pluralize(yoga_session.remaining_seats, 'place')} #{'restante'.pluralize(yoga_session.remaining_seats)}" %> </p>
 
-    <% if session[:cart].exclude?(yoga_session.id) %>
-      <%= button_to "Réserver", add_to_cart_yoga_session_path(yoga_session), 
-          method: :post, 
-          data: { turbo_frame: yoga_session },
-          form_class: "form__resa", 
-          class: 'btn btn-resa' %>
+      <% if session[:cart].exclude?(yoga_session.id) %>
+        <%= button_to "Réserver", add_to_cart_yoga_session_path(yoga_session), 
+            method: :post, 
+            data: { turbo_frame: yoga_session },
+            form_class: "form__resa", 
+            class: 'btn btn-resa' %>
+      <% else %>
+        <button class='btn btn-resa disabled'>Ajouté</button>
+      <% end %>
     <% else %>
-      <button class='btn btn-resa disabled'>Ajouté</button>
+      <p>COMPLET</p>
     <% end %>
-  <% else %>
-    <p>COMPLET</p>
-  <% end %>
+  </div>
 <% end %>

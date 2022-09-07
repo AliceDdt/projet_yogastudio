@@ -15,7 +15,7 @@
 
   <div class="other-links">
     <% if Clearance.configuration.allow_sign_up? %>
-      <div>Pas encore de compte ? <%= link_to t(".sign_up"), sign_up_path %>
+      <div>Pas encore de compte ? <%= link_to t(".sign_up"), sign_up_path, class:'sign_in' %>
       </div>
     <% end %>
   </div>

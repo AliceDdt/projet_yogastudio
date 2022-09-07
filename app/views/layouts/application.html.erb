@@ -18,9 +18,11 @@
       <div class="container">
         <%= render 'layouts/header' %>
         <main class="main">
+        <% if flash.any? %>
           <div id="flash">
             <%= render "layouts/flash" %>
           </div>
+        <% end %>
           <%= yield %>
         </main>
         <%= render 'layouts/footer' %>

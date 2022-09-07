@@ -1,7 +1,9 @@
 <section class='yogaclass'>
   <h2>Planning des cours</h2>
   <p>Retrouvez ici tous les cours réservables! </p>
-
-  <%= render @yoga_sessions %>
   
+  <%= render @yoga_sessions %>
+  <div>
+    <%= link_to 'Voir mon panier', cart_index_path, class:"btn" %>
+  </div>
 </section>

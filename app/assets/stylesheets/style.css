@@ -3,7 +3,6 @@
 **********************************************************/
 :root {
 
-
 	--font-body: 'Montserrat', sans-serif;
 	--font-headerTitle: 'Nothing You Could Do', cursive;
 
@@ -25,6 +24,7 @@
 
 	--backcolor-main: #ffff;
 	--backcolor-navbar: #c8dff7;
+	--backcolor-navbar-signout:	 #97c5f7;
 	--backcolor-btnNav: #000000;
 	--backcolor-footer: linear-gradient(119deg, #dbe4ee 0%, #c5d7e8 19%, #c3d9e8 46%, #c9deee 69%, #d9e6ea 87%, #cee7e8 100%);
 	--backcolor-btn: #6ea2bfc4;
@@ -119,6 +119,7 @@ td {
 @media screen and (min-width: 768px) {
 	.header__title {
 		font-size: var(--size-headerTitle-md);
+		padding-left: 4rem;
 	}
 
 }
@@ -172,6 +173,13 @@ td {
 
 .navbar li:first-child {
 	margin-top: 10rem;
+}
+
+.navbar li:last-child {
+	background-color: var(--backcolor-navbar-signout);
+	padding: 2rem;
+	border-radius: 1rem;
+	margin-top: 6rem;
 }
 
 .navbar li.laptop {
@@ -316,7 +324,6 @@ td {
 		margin: 2rem;
 	}
 }
-
 
 /****************************************************************************************************************
                     BACKGROUND IMAGE
@@ -490,6 +497,10 @@ td {
 	font-weight: bold;
 }
 
+.team__element p{
+	text-align: justify;
+}
+
 article.team__element div {
 	width: 200px;
 	height: 200px;
@@ -515,9 +526,18 @@ article.team__element div {
 .yogaclass__card,
 .account__card,
 .cart__booking {
-	margin: 4rem auto;
+	margin: 2rem auto;
 	padding: 2rem;
 	border-radius: 10px;
+}
+
+.yogaclass p {
+	text-align: center;
+}
+
+.yogaclass>div {
+	margin: 5rem auto;
+	width: 100%;
 }
 
 .yogaclass__card {
@@ -537,6 +557,15 @@ article.team__element div {
 
 .main .yogaclass__card>p:last-of-type {
 	margin-bottom: 1rem;
+}
+
+.yogaclass__card>form>button,
+.yogaclass__card>button {
+	margin: 1rem auto;
+}
+
+.yogaclass__card>form {
+	margin: auto;
 }
 
 .account__card,
@@ -568,19 +597,31 @@ article.team__element div {
 }
 
 /******** cart page ********/
+.cart form {
+	margin: 4rem auto;
+}
+
 .cart__booking {
 	display: flex;
-	align-items: center;
-	justify-content: space-evenly;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-.cart__booking div {
-	width: 80%;
-}
-
-.cart__booking div>p {
+.cart__booking p {
 	text-align: left;
 }
+
+.cart__booking form {
+	margin: 0;
+}
+
+/******** sign_in page ********/
+
+.sign_in {
+	text-decoration: underline;
+}
+
+/************ SCREEN 768px ***********************/
 
 @media only screen and (min-width: 768px) {
 	.main {
@@ -662,9 +703,7 @@ article.team__element div {
 		margin-top: 15rem;
 	}
 
-
 	/********** teacher page **********/
-
 	.team__element.team--description {
 		padding-top: 5rem;
 		margin: 10rem;
@@ -701,9 +740,8 @@ article.team__element div {
 	.main .yogaclass {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: center;
+		justify-content: space-around;
 		align-items: center;
-		width: 100%;
 		margin: 4rem auto;
 	}
 
@@ -714,8 +752,15 @@ article.team__element div {
 	}
 
 	.yogaclass__card {
-		width: 45%;
+		width: 100%;
+		height: 40vh;
 		margin: 4rem 1rem;
+		padding: 4rem;
+	}
+
+	.yogaclass__card>form,
+	.yogaclass__card>button {
+		margin: 4rem auto;
 	}
 
 	/********* account page ***********/
@@ -723,9 +768,9 @@ article.team__element div {
 	.account__card td:last-of-type {
 		display: table-cell;
 	}
-
 }
 
+/************ SCREEN 960px ***********************/
 @media only screen and (min-width: 960px) {
 
 	/******* courses page *****************/
@@ -738,17 +783,11 @@ article.team__element div {
 	}
 }
 
-
+/************ SCREEN 1024px ***********************/
 @media only screen and (min-width: 1024px) {
 
 	.main section {
 		width: 70%;
-	}
-
-	/**** timetable page *****/
-	.yogaclass__card {
-		width: 30%;
-		margin: 4rem;
 	}
 
 	.account__card h3 {
@@ -756,6 +795,7 @@ article.team__element div {
 	}
 }
 
+/************ SCREEN 1280px ***********************/
 @media only screen and (min-width: 1280px) {
 
 	.main section {
@@ -784,11 +824,6 @@ article.team__element div {
 	/********** teacher page **********/
 	.team__element.team--description {
 		margin: 10rem auto;
-	}
-
-	/***** timetable page ****/
-	.yogaclass__card {
-		width: 25%;
 	}
 }
 
@@ -831,6 +866,7 @@ article.team__element div {
 }
 
 .btn--remove {
+	margin: 0;
 	padding: 0.5em 1em;
 	border: var(--border-btn-remove);
 	background-color: var(--backcolor-main);
@@ -866,13 +902,6 @@ article.team__element div {
 .footer__contact div {
 	padding-bottom: 2rem;
 }
-
-/* .footer h3::before,
-.footer h3::after {
-    content: ".";
-    font-size: 2rem;
-    padding: 0 1rem;
-} */
 
 @media only screen and (min-width: 768px) {
 	.footer {
@@ -1008,10 +1037,6 @@ input:focus {
 		margin-right: 2em;
 	}
 
-	.yogaclass__card button,
-	form {
-		margin: 1rem;
-	}
 }
 
 @media only screen and (min-width: 1024px) {
@@ -1026,7 +1051,7 @@ input:focus {
                 ALERT MESSAGES
 *************************************************************************************/
 .flash {
-	width: 50%;
+	width: 75%;
 	margin: 2rem auto;
 	border-radius: 2rem;
 }
@@ -1046,4 +1071,11 @@ input:focus {
 	padding: 1rem;
 	font-weight: bold;
 	text-align: center;
+}
+
+@media only screen and (min-width: 1024px) {
+
+	.flash {
+		width: 50%;
+	}
 }
