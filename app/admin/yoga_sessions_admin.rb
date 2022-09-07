@@ -17,7 +17,7 @@ Trestle.resource(:yoga_sessions) do
     actions
   end
 
-  form do |_yoga_session|
+  form do |yoga_session|
     select :course_id, Course.all, prompt: t('admin.yoga_sessions.form.prompts.select_course')
     select :teacher_id, Teacher.all, prompt: t('admin.yoga_sessions.form.prompts.select_teacher')
     row do
@@ -27,7 +27,7 @@ Trestle.resource(:yoga_sessions) do
     row do
       col(:sm) { number_field :number_participants }
       col(:sm) do
-        text_field :price # value: yoga_session.price/100.0
+        text_field :price, value: (yoga_session&.price || 0)/100.0
       end
     end
   end
