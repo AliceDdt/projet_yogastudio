@@ -2,6 +2,9 @@
 
 Rails.application.routes.draw do
   root 'root#index'
+
+  match "/404" => "errors#not_found", via: :all
+  match "/500" => "errors#internal_server_error", via: :all
   
   resources :passwords, controller: 'clearance/passwords', only: [:create, :new]
   resource :session, controller: 'clearance/sessions', only: [:create]
@@ -15,8 +18,6 @@ Rails.application.routes.draw do
   get '/sign_in' => 'clearance/sessions#new', as: 'sign_in'
   delete '/sign_out' => 'clearance/sessions#destroy', as: 'sign_out'
   get '/sign_up' => 'clearance/users#new', as: 'sign_up'
-
-  # resource :me, controller: 'me', only: %i[show edit update]
 
   resources :courses, only: [:index]
   resources :teachers, only: [:index]
