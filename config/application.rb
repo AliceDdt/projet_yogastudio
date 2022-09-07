@@ -12,7 +12,7 @@ module Projet
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-
+    config.exceptions_app = self.routes
 
     config.eager_load_paths << Rails.root.join('lib')
     config.autoload_paths += Dir[Rails.root.join('lib').to_s,
