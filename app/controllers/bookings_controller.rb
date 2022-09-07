@@ -1,11 +1,11 @@
-# frozen_string_literal: true
 
+# frozen_string_literal: true
 class BookingsController < ApplicationController
   before_action :require_login
 
   def create
     @cart.each do |item|
-      return redirect_to cart_index_path, alert: item.errors.messages if item.already_booked?(current_user.id, item.id)
+      return redirect_to cart_index_path, alert: item.errors.full_messages.first if item.already_booked?(current_user.id, item.id)
     end
 
     stripe_session = Stripe::Checkout::Session.create({
@@ -28,8 +28,6 @@ class BookingsController < ApplicationController
   end
 
   def cancel; end
-
-  private
 
   def stripe_line_items
     @cart.map do |item|

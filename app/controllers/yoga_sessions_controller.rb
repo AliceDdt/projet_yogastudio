@@ -12,19 +12,18 @@ class YogaSessionsController < ApplicationController
 
     if session[:cart].include?(id)
       respond_to do |format|
-        format.html { redirect_to yoga_sessions_path, alert: 'Yoga session was already added to cart.' }
-        format.turbo_stream { flash.now[:alert] = 'Yoga session was already added to cart.' }
+        format.html { redirect_to yoga_sessions_path, alert: I18n.t('yoga_sessions.already_added_to_cart') }
+        format.turbo_stream { flash.now[:alert] = I18n.t('yoga_sessions.already_added_to_cart') }
       end
     else
       @session = session[:cart] << id
       respond_to do |format|
-        format.html { redirect_to yoga_sessions_path, notice: 'Yoga session was added to cart.' }
-        format.turbo_stream { flash.now[:notice] = 'Yoga session was added to cart.' }
+        format.html { redirect_to yoga_sessions_path, notice: I18n.t('yoga_sessions.added_to_cart') }
+        format.turbo_stream { flash.now[:notice] = I18n.t('yoga_sessions.added_to_cart') }
       end
     end
   end
 
-  # TO DO rajouter msg d'info
   def remove_from_cart
     id = params[:id].to_i
     session[:cart].delete(id)

@@ -64,19 +64,19 @@ class YogaSession < ApplicationRecord
   def start_end_on_same_day
     return if start_date.to_date == end_date.to_date
 
-    errors.add(:end_date, 'must be the same day as start date')
+    errors.add(:end_date, I18n.t('yoga_sessions.same_day'))
   end
 
   def start_is_before_end_date
     return if start_date < end_date
 
-    errors.add(:start_date, 'must be before end date')
+    errors.add(:start_date, I18n.t('yoga_sessions.before_end_date'))
   end
 
   def start_in_future
     return if start_date > Time.zone.now
 
-    errors.add(:start_date, 'must be in the future')
+    errors.add(:start_date, I18n.t('yoga_sessions.must_be_future'))
   end
 
   def in_between_opening_hours
@@ -85,13 +85,13 @@ class YogaSession < ApplicationRecord
     end
     return if valid
 
-    errors.add(:start_date, 'must be in between opening hours')
+    errors.add(:start_date, I18n.t('yoga_sessions.between_opening_hours'))
   end
 
   def teacher_availability
     return if teacher.available_between?(start_date, end_date)
 
-    errors.add(:teacher, 'is not available')
+    errors.add(:teacher, I18n.t('teachers.teacher_availability'))
   end
 
   # building stripe line for yoga_session
@@ -105,6 +105,6 @@ class YogaSession < ApplicationRecord
   def already_booked?(user_id, yoga_session_id)
     return unless Booking.exists?(user_id: user_id, yoga_session_id: yoga_session_id)
 
-    errors.add(:yoga_session, 'already booked')
+    errors.add(:base, :already_booked)
   end
 end

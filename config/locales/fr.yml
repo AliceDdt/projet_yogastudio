@@ -26,3 +26,20 @@ fr:
       administrator:
         first_name: Prénom
         last_name: Nom
+  yoga_sessions:
+    added_to_cart: Séance ajoutée au panier
+    already_added_to_cart: Séance déjà ajoutée au panier
+    between_opening_hours: Horaire doit être pendant les heures d'ouverture
+    must_be_future: Date doit être dans le futur
+    before_end_date: Horaire de début doit être avant horaire de fin
+    same_day: Date de fin doit être le même jour que celle du début
+  teachers:
+    teacher_availability: Enseignant pas disponible
+  activerecord:
+    errors:
+      format: "%{message}"
+      models:
+        yoga_session:
+          attributes:
+            base:
+              already_booked: Vous avez déjà réservé cette séance

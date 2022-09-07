@@ -26,6 +26,7 @@ fr:
         submit: Connexion
       user:
         create: Inscription
+        update: Enregistrer
   layouts:
     application:
       sign_in: Connexion
