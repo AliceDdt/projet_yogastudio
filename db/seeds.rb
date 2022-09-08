@@ -12,23 +12,27 @@ Administrator.create_with(password: "password")
 puts '-- Administrator created!'
 
 Teacher.create_with(
-  bio: "J'enseigne le yoga",
-  first_name: "Yogi",
-  last_name: "Ho",
+  bio: "J'enseigne le yoga. Nam euismod, est vitae posuere maximus, mi odio mollis lacus, id bibendum massa sem dapibus dolor. Donec sed odio sollicitudin dolor faucibus tristique sed sodales libero. Nunc sed porta justo. Nulla a odio purus. Ut ullamcorper metus libero, non tincidunt sem cursus ac. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nunc blandit nisl velit, vel posuere nulla mollis vitae. Etiam rhoncus, nulla a interdum venenatis, urna eros auctor leo, nec ornare lacus augue sed risus. Maecenas cursus ac felis in finibus.",
+  first_name: "Raphaëlle",
+  last_name: "Bellamy",
   phone_number: "1234",
   address_attributes: {
     street: "1 rue de la paix",
     city: "Paris",
     zip_code: "75001",
   }
-).find_or_create_by(email: "yogi@ho.com")
+).find_or_create_by(email: "r.bellamy@gmail.com")
 puts '-- Teacher created!'
 
+
+Teacher.first.picture.attach(io: File.open(File.join(Rails.root,'app/assets/images/prof1-500px.png')), filename: 'prof1.png')
+
+
 User.create_with(
-  first_name: "Jean",
-  last_name: "Lassalle",
+  first_name: "User",
+  last_name: "Name",
   phone_number: "6789",
-  password: 'password',
+  password: 'password123!',
   address_attributes: {
     street: "2 rue de la paix",
     city: "Paris",
