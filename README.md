@@ -1,24 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is for a fictional yoga studio 
+and it allows you to book yogaclasses
 
-Things you may want to cover:
+Using Rails 7 and ruby-2.7.5
 
-* Ruby version
+Back-office with gem Trestle Admin allows you to :
+  - CRUD teachers
+  - CRUD courses
+  - create and delete yoga sessions
+  - view users
+  - view and delete bookings
 
-* System dependencies
+Use of Stimulus JS for navbar, flash messages and form validation
 
-* Configuration
+Using Stripe gem for payment, you have to create your own account on https://stripe.com/fr
+and put your stripe keys (publishable and secret) in your .env file
 
-* Database creation
+To install db: 
+run db:create db:migrate db:seed
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
