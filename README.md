@@ -17,6 +17,7 @@ Use of Stimulus JS for navbar, flash messages and form validation
 Using Stripe gem for payment, you have to create your own account on https://stripe.com/fr
 and put your stripe keys (publishable and secret) in your .env file
 
-To install db: 
-run db:create db:migrate db:seed
+To install project: 
+run bundle 
+then rails db:create db:migrate db:seed
 
