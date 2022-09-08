@@ -34,11 +34,6 @@ class User < ApplicationRecord
 
   has_many :bookings, dependent: :destroy
 
-  # TODO: delete once role gem is installed admin/user
-  def admin?
-    true
-  end
-
   def full_name
     "#{first_name} #{last_name}"
   end
