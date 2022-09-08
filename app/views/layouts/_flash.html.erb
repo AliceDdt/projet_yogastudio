@@ -1,4 +1,4 @@
-<div data-controller="flash" class="flash">
+<div data-controller="flash" class="flash fadeOut">
   <% flash.each do |flash_type, message| %>
     <%= content_tag :p, message, class: "flash #{flash_type}" %>
   <% end %>

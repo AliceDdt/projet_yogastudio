@@ -1051,10 +1051,35 @@ input:focus {
                 ALERT MESSAGES
 *************************************************************************************/
 .flash {
+	position: absolute;
+	right: 0;
+	left:0;
+	top: 3.5rem;
+	z-index: 4;
 	width: 75%;
 	margin: 2rem auto;
 	border-radius: 2rem;
+	-webkit-animation-duration: 8s;
+	animation-duration: 8s;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
 }
+
+@-webkit-keyframes fadeOut {
+	0% {opacity: 1;}
+	100% {opacity: 0;}
+}
+
+@keyframes fadeOut {
+	0% {opacity: 1;}
+	100% {opacity: 0;}
+}
+
+.fadeOut {
+	-webkit-animation-name: fadeOut;
+	animation-name: fadeOut;
+}
+
 
 .flash.notice {
 	border: 1px solid rgb(135, 190, 135);
